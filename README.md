@@ -1,2 +1,3 @@
-# learn-llm
-LLM Learning for Software Developers &amp; PMs
+# Learn LLMs
+
+A LLM Learning Guide for People with NO Knowledge of Machine Learning
