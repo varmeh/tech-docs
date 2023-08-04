@@ -21,7 +21,17 @@ The simplest form of the `docker run` command:
 docker run ubuntu
 ```
 
-This command will create and start a new container based on the `ubuntu` image. It will start an interactive shell in the container, because the default command in the `ubuntu` image is `/bin/bash`.
+This command will create and start a new container based on the `ubuntu` image.
+
+It will start an interactive shell in the container, because the default command in the `ubuntu` image is `/bin/bash`.
+
+The shell is run within & would not be accessible to us on docker shell.
+
+To access it, run it interactive mode.
+
+```bash
+docker run -it ubuntu
+```
 
 ### 2. Run in Detached Mode
 
