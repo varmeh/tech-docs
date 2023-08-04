@@ -1,6 +1,7 @@
 # Docker Commands
 
 - [Docker Commands](#docker-commands)
+  - [Docker Container Lifecycle](#docker-container-lifecycle)
   - [Docker Run Primer](#docker-run-primer)
     - [1. Basic `docker run`](#1-basic-docker-run)
     - [2. Run in Detached Mode](#2-run-in-detached-mode)
@@ -10,6 +11,26 @@
     - [6. Running a Specific Command](#6-running-a-specific-command)
     - [7. Removing the Container after Exit](#7-removing-the-container-after-exit)
     - [8. Running a Interactive Shell](#8-running-a-interactive-shell)
+
+## Docker Container Lifecycle
+
+The lifecycle of a Docker container generally involves the following stages:
+
+1. **Create:** Using the `docker create` command, a new Docker container is created from a specified image. This stage includes setting any configuration options like port mappings, volume mounts, environment variables, etc.
+
+2. **Start:** Once the container is created, you can start it using the `docker start` command. This initiates the process defined in the Dockerfile's CMD instruction.
+
+3. **Running:** When the container is running, it's in the most active state. During this phase, it can be paused, resumed, or stopped. You can also interact with the running container, execute commands in it, monitor its resource usage, etc.
+
+4. **Stop:** When a container is stopped using the `docker stop` command, the main process inside the container is terminated and the container is moved to a stopped state.
+
+5. **Restart:** A stopped container can be restarted using the `docker restart` command. This will put the container back into the running state and restart the main process.
+
+6. **Remove:** When a container is no longer needed, it can be removed with the `docker rm` command. This will destroy the container and free up system resources. Please note, you cannot remove a running container; it must be stopped first.
+
+It's worth noting that `docker run` is a combination of `docker create` and `docker start`. It creates the container and immediately starts it.
+
+And lastly, Docker provides commands to pause (`docker pause`) and unpause (`docker unpause`) a container, adding more steps to the lifecycle, allowing you to temporarily halt processes in a running container.
 
 ## Docker Run Primer
 
