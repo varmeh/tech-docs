@@ -73,7 +73,7 @@ It's generally recommended to use `docker stop` first, which sends a SIGTERM sig
 
 If that doesn't work, then you can use `docker kill`.
 
-### docker stop vs docker kill
+### [docker stop vs docker kill](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11436664#overview)
 
 |     | `docker stop` | `docker kill` |
 | --- | ------------- | ------------- |
