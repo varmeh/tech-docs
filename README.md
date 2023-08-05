@@ -23,7 +23,4 @@ Reference Tech Docs
 | Topic | Description | Categorization |
 | ----- | ----------- | -------------- |
 | [Docker Basics](./docs/k8s/Docker.md) | This document explains what is Docker & what technologies power it  | Docker |
-| [Docker Command Categorization](./docs/k8s/DockerCommandsCategorization.md) | This document categorizes docker commands  | Docker |
-| [Docker Lifecycle Commands](./docs/k8s/DockerLifecycleCommands.md) | Docker Commands with reference examples  | Docker |
-| [Docker Operation Commands](./docs/k8s/DockerOperationsCommands.md) | Docker Commands with reference examples  | Docker |
-| [Docker Prune Commands](./docs/k8s/DockerPruningCommands.md) | Docker Commands with reference examples  | Docker |
+| [Docker Commands](./docs/k8s/DockerCommandsCategorization.md) | This document list & categorizes most docker commands  | Docker |
