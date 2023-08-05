@@ -42,7 +42,7 @@ In conclusion, Docker has leveraged a variety of existing Linux technologies to 
 ### Concise Comparison
 
 | Attribute  | VMs | Docker Containers |
-|---|---|---|
+| ---------- | --- | ----------------- |
 | **Overhead**  | High (full OS) | Low (just app and dependencies)  |
 | **Boot-Up Time**  | Slow (full OS boot) | Fast (app process boot)  |
 | **Performance**  | Good, but less efficient | Excellent (less overhead) |
