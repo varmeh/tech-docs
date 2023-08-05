@@ -36,7 +36,7 @@ Remember, `docker ps` will show you the container ID, which is often required fo
 
 Remember that the `docker logs` command works on both **running** and **stopped** containers.
 
-## docker exec
+## [docker exec](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11436666#overview)
 
 This command opens an interactive Bash shell inside a running container named `my_container`. From there, you can run any command inside the container as if you were SSH-ed into a remote server.
 | Usage | Command | Description |
