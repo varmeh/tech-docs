@@ -1,10 +1,9 @@
-# Docker Commands
+# Docker Lifecycle Commands
 
-- [Docker Commands](#docker-commands)
-  - [Docker Container Lifecycle](#docker-container-lifecycle)
-  - [Docker Run](#docker-run)
+- [Docker Lifecycle Commands](#docker-lifecycle-commands)
   - [Docker Create](#docker-create)
   - [Docker Start](#docker-start)
+  - [Docker Run](#docker-run)
   - [Docker PS](#docker-ps)
   - [Docker Stop](#docker-stop)
   - [Docker Restart](#docker-restart)
@@ -12,8 +11,6 @@
   - [Docker Remove](#docker-remove)
   - [Docker Prune](#docker-prune)
     - [Docker Remove vs Prune](#docker-remove-vs-prune)
-
-## Docker Container Lifecycle
 
 The lifecycle of a Docker container generally involves the following stages:
 
@@ -32,24 +29,6 @@ The lifecycle of a Docker container generally involves the following stages:
 It's worth noting that `docker run` is a combination of `docker create` and `docker start`. It creates the container and immediately starts it.
 
 And lastly, Docker provides commands to pause (`docker pause`) and unpause (`docker unpause`) a container, adding more steps to the lifecycle, allowing you to temporarily halt processes in a running container.
-
-## Docker Run
-
-`docker run = docker create + docker start`
-
-| Usage | Command | Description |
-| ----- | ------- | ----------- |
-| Basic `docker run` | `docker run ubuntu` | Creates and starts a new container based on the `ubuntu` image. |
-| Run in Interactive Mode | `docker run -it ubuntu` | Starts an interactive shell in the `ubuntu` container. |
-| Run in Detached Mode | `docker run -d nginx` | Runs the `nginx` server in the background (detached mode). |
-| Port Mapping | `docker run -d -p 8080:80 nginx` | Maps port 8080 on the host to port 80 on the `nginx` container. |
-| Mounting Volumes | `docker run -v /host/directory:/container/directory ubuntu` | Mounts `/host/directory` from the host to `/container/directory` in the container. |
-| Specifying Environment Variables | `docker run -e "ENV_VAR=value" ubuntu` | Sets an environment variable `ENV_VAR` with the value `value`. |
-| Running a Specific Command | `docker run ubuntu echo "Hello, World!"` | Starts a new container from the `ubuntu` image and executes the `echo "Hello, World!"` command. |
-| Removing the Container after Exit | `docker run --rm ubuntu echo "Hello, World!"` | Removes the container once the `echo` command completes and the container exits. |
-| Running an Interactive Shell | `docker run -it ubuntu /bin/bash` | Starts a `ubuntu` container and launches a bash shell on it. |
-
-Remember, you can always use `docker ps` to see all running containers, and refer to the [Docker documentation](https://docs.docker.com/engine/reference/commandline/run/) for more information on the `docker run` command.
 
 ## Docker Create
 
@@ -76,6 +55,22 @@ The `docker create` command allows you to set up a container with the desired co
 As usual, replace `container_id` with the ID of the container you want to start.
 
 You can get the ID of the container by using the `docker ps -a` command, which lists all containers (not just running ones)
+
+## Docker Run
+
+`docker run = docker create + docker start`
+
+| Usage | Command | Description |
+| ----- | ------- | ----------- |
+| Basic `docker run` | `docker run ubuntu` | Creates and starts a new container based on the `ubuntu` image. |
+| Run in Interactive Mode | `docker run -it ubuntu` | Starts an interactive shell in the `ubuntu` container. |
+| Run in Detached Mode | `docker run -d nginx` | Runs the `nginx` server in the background (detached mode). |
+| Port Mapping | `docker run -d -p 8080:80 nginx` | Maps port 8080 on the host to port 80 on the `nginx` container. |
+| Mounting Volumes | `docker run -v /host/directory:/container/directory ubuntu` | Mounts `/host/directory` from the host to `/container/directory` in the container. |
+| Specifying Environment Variables | `docker run -e "ENV_VAR=value" ubuntu` | Sets an environment variable `ENV_VAR` with the value `value`. |
+| Running a Specific Command | `docker run ubuntu echo "Hello, World!"` | Starts a new container from the `ubuntu` image and executes the `echo "Hello, World!"` command. |
+| Removing the Container after Exit | `docker run --rm ubuntu echo "Hello, World!"` | Removes the container once the `echo` command completes and the container exits. |
+| Running an Interactive Shell | `docker run -it ubuntu /bin/bash` | Starts a `ubuntu` container and launches a bash shell on it. |
 
 ## Docker PS
 
