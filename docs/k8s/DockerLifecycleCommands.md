@@ -8,7 +8,6 @@
   - [docker restart](#docker-restart)
     - [docker start vs docker restart](#docker-start-vs-docker-restart)
   - [docker rm](#docker-rm)
-    - [Docker Remove vs Prune](#docker-remove-vs-prune)
 
 The lifecycle of a Docker container generally involves the following stages:
 
@@ -110,16 +109,3 @@ You can get the ID of the container by using the `docker ps -a` command, which l
 - Always remember that a container must be stopped before it can be removed.
 
 - The `docker rm -f` command can stop and remove a container in one step, but use it cautiously as it forcefully kills the container.
-
-### Docker Remove vs Prune
-
-| | `docker rm` | `docker system prune` |
-| --- | --- | --- |
-| **Purpose** | Removes specific containers. | Removes unused data. |
-| **Target** | Specific containers identified by their IDs or names. | All stopped containers, all networks not used by at least one container, all dangling images, and build cache. |
-| **Effect on running containers** | Can forcefully remove if `-f` is used. | No effect on running containers. |
-| **Effect on stopped containers** | Can remove if the container IDs are specified. | Removes all stopped containers. |
-| **Effect on images and networks** | No effect. | Removes all dangling images and unused networks. |
-| **Effect on volumes** | Can remove associated volumes if `-v` is used. | Removes all unused volumes if `--volumes` is used. |
-
-So, you can see that `docker rm` is more targeted – you specify exactly what you want to remove. On the other hand, `docker system prune` is more of a cleanup command – it gets rid of unused or dangling resources.

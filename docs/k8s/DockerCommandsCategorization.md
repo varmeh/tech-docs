@@ -12,9 +12,12 @@ Docker commands can be broadly categorized based on their functionality. Here's 
 
 2. **[Container Operations Commands](./DockerOperationsCommands.md):**
    - `docker ps`
+   - `docker logs`
    - `docker exec`
    - `docker attach`
-   - `docker logs`
+   - `docker kill`
+   - `docker top`
+   - `docker stats`
 
 3. **Image Management Commands:**
    - `docker images`
