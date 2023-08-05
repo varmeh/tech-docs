@@ -38,6 +38,7 @@ Remember that the `docker logs` command works on both **running** and **stopped*
 
 ## docker exec
 
+This command opens an interactive Bash shell inside a running container named `my_container`. From there, you can run any command inside the container as if you were SSH-ed into a remote server.
 | Usage | Command | Description |
 | ----- | ------- | ----------- |
 | Basic `docker exec` | `docker exec container_id command` | Executes a command in a running container. Replace `command` with the command you want to run. |
@@ -46,7 +47,13 @@ Remember that the `docker logs` command works on both **running** and **stopped*
 | Detached exec | `docker exec -d container_id command` | Runs a command in a detached mode, in the background. |
 | Environment variables | `docker exec -e VAR=value container_id command` | Sets environment variables for the command being run. Replace `VAR` with the variable name and `value` with the corresponding value. |
 
-Please note that `docker exec` command only works on running containers.
+The `docker exec` command is used to run *a new command in a running Docker container*. This can be incredibly useful for various purposes, including:
+
+1. **Debugging**: If you have a running container and you're unsure why it's not behaving as expected, `docker exec` can be used to start a shell in the context of the container. You can then use standard Linux commands to inspect the container's file system, processes, network settings, etc.
+
+2. **Administrative tasks**: Maybe you need to change a configuration file, install a new package, or run a database migration. Using `docker exec`, you can run these tasks directly within the running container.
+
+3. **Monitoring**: With `docker exec`, you can fetch specific information about the state of a running container. This might be useful in monitoring and logging scenarios.
 
 ## docker attach
 

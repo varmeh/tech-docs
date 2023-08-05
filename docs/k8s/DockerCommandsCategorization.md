@@ -1,4 +1,4 @@
-# Docker Command Categorization
+# Docker Commands Categorization
 
 Docker commands can be broadly categorized based on their functionality. Here's a basic grouping of Docker commands:
 
