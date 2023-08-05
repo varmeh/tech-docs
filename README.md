@@ -4,10 +4,23 @@ Reference Tech Docs
 
 ## Topics Covered
 
-| Topic                    | Description                                                                    | Categorization |
-|--------------------------|--------------------------------------------------------------------------------|----------------|
-| [Encryption Explained](./docs/network-basics/Encryption.md)          | This document explains how Symmetric vs Asymmetric Encryption & their role in HTTPS Communication                                | Network Basics |
-| [HTTPS Explained](./docs/network-basics/HttpsExplained.md)          | This document explains how HTTPS protocol works                                | Network Basics |
-| [Rest HTTP Codes](./docs/network-basics/HttpStatusCodes.md)          | List Http Status Codes frequently used in REST APIs                            | REST           |
-| [FastAPI Code Conventions](./docs/fastapi/NamingConventions.md) | List down the code conventions to be followed while building a FastAPI Project | Python         |
-| [Docker & K8s Primer](./docs/k8s/README.md) | All thing Docker & K8s | Docker         |
+### Basics
+
+| Topic | Description | Categorization |
+| ----- | ----------- | -------------- |
+| [Encryption Explained](./docs/network-basics/Encryption.md) | This document explains how Symmetric vs Asymmetric Encryption & their role in HTTPS Communication  | Encryption |
+| [HTTPS Explained](./docs/network-basics/HttpsExplained.md)  | This document explains how HTTPS protocol works | Network |
+
+### Conventions
+
+| Topic | Description | Categorization |
+| ----- | ----------- | -------------- |
+| [Rest HTTP Codes](./docs/network-basics/HttpStatusCodes.md)          | List Http Status Codes frequently used in REST APIs | REST |
+| [FastAPI Code Conventions](./docs/fastapi/NamingConventions.md) | List down the code conventions to be followed while building a FastAPI Project | Python |
+
+### Microservices
+
+| Topic | Description | Categorization |
+| ----- | ----------- | -------------- |
+| [Docker Basics](./docs/k8s/Docker.md) | This document explains what is Docker & what technologies power it  | Docker |
+| [Docker Lifecycle Commands](./docs/k8s/DockerLifecycleCommands.md) | Docker Commands with reference examples  | Docker |
