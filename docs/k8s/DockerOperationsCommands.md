@@ -6,6 +6,7 @@
   - [docker exec](#docker-exec)
   - [docker attach](#docker-attach)
   - [docker kill](#docker-kill)
+    - [docker stop vs docker kill](#docker-stop-vs-docker-kill)
   - [docker top](#docker-top)
   - [docker stats](#docker-stats)
 
@@ -71,6 +72,16 @@ Remember, `docker kill` will forcefully stop the container, which could lead to 
 It's generally recommended to use `docker stop` first, which sends a SIGTERM signal that allows the container to shut down gracefully.
 
 If that doesn't work, then you can use `docker kill`.
+
+### docker stop vs docker kill
+
+|     | `docker stop` | `docker kill` |
+| --- | ------------- | ------------- |
+| Description | Sends a SIGTERM signal to the main process in a container, asking it to shut down gracefully. If the process doesn't exit within a certain timeframe (default is 10 seconds), a SIGKILL signal is sent to forcefully stop the container. | Immediately sends a SIGKILL signal to a running container, forcibly terminating it. |
+| When to use | When you want to give a container the chance to clean up resources, save state, or perform other shutdown tasks. This is generally the recommended way to stop a container. | When you need to immediately stop a container, typically during an error state or when the container is unresponsive. Be aware that it can lead to data loss, as it doesn't give the container a chance to perform a graceful shutdown. |
+| Command | `docker stop container_id` | `docker kill container_id` |
+
+Both `docker stop` and `docker kill` can be used to stop a running container, but their approach is different, and the choice between the two depends on whether you want to allow the container to shut down gracefully (`docker stop`) or you need to immediately terminate it (`docker kill`).
 
 ## docker top
 
