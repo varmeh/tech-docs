@@ -17,8 +17,9 @@ Reference Tech Docs
 | ----- | ----------- | -------------- |
 | [Rest HTTP Codes](./docs/network-basics/HttpStatusCodes.md)          | List Http Status Codes frequently used in REST APIs | REST |
 | [FastAPI Code Conventions](./docs/fastapi/NamingConventions.md) | List down the code conventions to be followed while building a FastAPI Project | Python |
+| [VSCode Shortcuts](./docs/misc/VSCodeKeyShortcuts.md) | VSCode Keyboard Shortcuts | VSCode |
 
-### Microservices
+### Deployments
 
 | Topic | Description | Categorization |
 | ----- | ----------- | -------------- |

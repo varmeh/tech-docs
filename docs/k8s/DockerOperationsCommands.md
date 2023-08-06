@@ -60,7 +60,7 @@ The `docker exec` command is used to run *a new command in a running Docker cont
 | Usage | Command | Description |
 | ----- | ------- | ----------- |
 | Basic `docker attach` | `docker attach container_id` | Attaches your terminal's standard input, output, and error (or any combination of the three) to a running container. Replace `container_id` with the ID or name of the container you want to attach to. |
-| Detach without stopping the container | `docker attach container_id` <br> `CTRL-p CTRL-q` | After attaching to a container, you can detach from it without stopping the container by using the `CTRL-p CTRL-q` key sequence. |
+| Detach without stopping the container | `docker attach container_id` </br> `CTRL-p CTRL-q` | After attaching to a container, you can detach from it without stopping the container by using the `CTRL-p CTRL-q` key sequence. |
 | Attach & detach with options | `docker attach --detach-keys="ctrl-c" container_id` | This command allows you to customize the detach key sequence. In this example, `CTRL-c` is used. |
 
 Remember, if you attach to a container and then use `CTRL-c`, it will send a SIGINT to the container, which could stop it.
