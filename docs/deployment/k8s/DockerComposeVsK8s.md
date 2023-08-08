@@ -83,3 +83,11 @@ If you're accustomed to using individual Docker commands to manage your containe
 | **Development to Production Workflow** | Used for local development                            | Used for production deployment                          |
 
 This table succinctly highlights the differences between Docker Compose and Kubernetes, showing their respective use cases and functionalities.
+
+## References
+
+- [K21Academy](https://k21academy.com/docker-kubernetes/docker-compose-vs-kubernetes/#:~:text=Docker%20Compose%20deploys%20multi%2Dcontainer,multiple%20virtual%20or%20physical%20machines.)
+
+- [Prod Infra by K8s](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/What-is-Kubernetes-vs-Docker-Compose-How-these-DevOps-tools-compare)
+
+- [Local to Prod](https://levelup.gitconnected.com/docker-compose-vs-kubernetes-understanding-the-differences-and-choosing-the-right-tool-32f3e16fdb43)
