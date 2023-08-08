@@ -23,6 +23,6 @@ Reference Tech Docs
 
 | Topic | Description | Categorization |
 | ----- | ----------- | -------------- |
-| [Docker Basics](./docs/k8s/Docker.md) | This document explains what is Docker & what technologies power it  | Docker |
-| [Docker Commands](./docs/k8s/DockerCommandsCategorization.md) | This document list & categorizes most docker commands  | Docker |
-| [Docker Files](./docs/k8s/FilesInDocker.md) | Dockerfile, .dockerignore & Compose-file explained  | Docker |
+| [Docker Basics](./docs/deployment/docker/Docker.md) | This document explains what is Docker & what technologies power it  | Docker |
+| [Docker Commands](./docs/deployment/docker/DockerCommandsCategorization.md) | This document list & categorizes most docker commands  | Docker |
+| [Docker Files](./docs/deployment/docker/FilesInDocker.md) | Dockerfile, .dockerignore & Compose-file explained  | Docker |
