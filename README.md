@@ -25,3 +25,4 @@ Reference Tech Docs
 | ----- | ----------- | -------------- |
 | [Docker Basics](./docs/k8s/Docker.md) | This document explains what is Docker & what technologies power it  | Docker |
 | [Docker Commands](./docs/k8s/DockerCommandsCategorization.md) | This document list & categorizes most docker commands  | Docker |
+| [Docker Files](./docs/k8s/FilesInDocker.md) | Dockerfile, .dockerignore & Compose-file explained  | Docker |
