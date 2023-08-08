@@ -41,6 +41,7 @@ A Dockerfile is a script containing instructions to create a Docker image. It al
 | `ENV`       | Sets environment variables in the container.         | `ENV NAME World`                                |
 | `EXPOSE`    | Informs Docker the container listens on specific ports. | `EXPOSE 80`                                  |
 | `VOLUME`    | Creates a mount point for persistent data.           | `VOLUME /data`                                  |
+| `ARG`       | Defines variables that could be passed at build time with `docker build`  | `ARG mode=DEV` </br> `ARG version` |
 
 For details, refer [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/).
 
