@@ -18,7 +18,6 @@
   - [References](#references)
     - [Dockerfile](#dockerfile-1)
     - [.dockerignore](#dockerignore)
-    - [Compose file](#compose-file)
 
 ## Dockerfile
 
@@ -222,5 +221,3 @@ node_modules/
 ### [Dockerfile](https://docs.docker.com/engine/reference/builder)
 
 ### [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file)
-
-### [Compose file](https://docs.docker.com/compose/compose-file/03-compose-file/)
