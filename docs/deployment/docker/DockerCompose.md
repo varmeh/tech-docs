@@ -195,12 +195,12 @@ docker run -d --rm --name redis-container --network counterapp-net -p 6379:6379 
 
 - Network for counterapp needs to be connected at the time of creation only, else connection to redis fails
 
-- We need to pass the `redis-container` name as an environment variable to the app container
+- We need to pass the `redis-container` as a part of `REDIS_URL` as an environment variable
 
 - Run the app container:
 
 ```bash
-docker run --rm --name counterapp -p 3001:3001 --network=counterapp-net --env REDIS_URL=redis://redis-container:6379 varunbotiga/counterapp
+docker run --rm --name counterapp -p 3001:3001 --network=counterapp-net --env REDIS_URL=redis://redis-container:6379 counterapp
 ```
 
 - Call the `home` route & it would work perfectly file
@@ -234,7 +234,7 @@ services:
       - '6379:6379'
 
   counterapp:
-    image: 'varunbotiga/counterapp'
+    image: 'counterapp'
     ports:
       - '3001:3001'
     environment:
