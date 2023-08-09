@@ -191,6 +191,11 @@ b. Connect while creating container:
 docker run -d --rm --name redis-container --network counterapp-net -p 6379:6379 redis
 ```
 
+- `-p` here is used to access redis from host machine
+- It helps in debugging redis using redis-cli
+- Otherwise, we don't need to expose the port for communication between containers
+- Containers in the same network can communicate with each other using container name
+
 ### Connect App
 
 - Network for counterapp needs to be connected at the time of creation only, else connection to redis fails
