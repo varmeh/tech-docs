@@ -59,9 +59,11 @@ import redis from 'redis'
 
 const app = express()
 
+const { REDIS_URL = 'redis://localhost:6379' } = process.env;
+console.log(`Redis URL: ${REDIS_URL}`)
+
 const redisClient = redis.createClient({
-    host: 'localhost',
-    port: 6379
+    url: REDIS_URL
 })
 
 app.get('/', async (_req, res) => {
@@ -193,24 +195,12 @@ docker run -d --rm --name redis-container --network counterapp-net -p 6379:6379 
 
 - Network for counterapp needs to be connected at the time of creation only, else connection to redis fails
 
-- Also, we need to update the `app.mjs` file to connect to redis server at `redis-container`:
-
-```js
-const redisClient = redis.createClient({
-    url: 'redis://redis-container:6379'
-})
-```
-
-- Build the image again:
-
-```bash
-docker build -t counterapp .
-```
+- We need to pass the `redis-container` name as an environment variable to the app container
 
 - Run the app container:
 
 ```bash
-docker run --rm --name counterapp --network counterapp-net -p 3001:3001 counterapp
+docker run --rm --name counterapp -p 3001:3001 --network=counterapp-net --env REDIS_URL=redis://redis-container:6379 varunbotiga/counterapp
 ```
 
 - Call the `home` route & it would work perfectly file
@@ -229,8 +219,7 @@ docker network inspect counterapp-net
 
 - To connect containers, we need to create a `docker network`
 - Attach redis container to the network
-- Update code to connect to redis server at `redis-container`
-- Create a new app counter with network information at time of creation
+- Create a new app counter with redis-container information at time of creation
 
 ## Run App With Docker Composer
 
@@ -248,6 +237,8 @@ services:
     image: 'varunbotiga/counterapp'
     ports:
       - '3001:3001'
+    environment:
+      - REDIS_URL=redis://redis-container:6379
     depends_on:
       - redis-container
 ```
@@ -259,7 +250,6 @@ docker compose up
 ```
 
 - Test the `home` route & it would work perfectly file
-- That's all
 
 In essence, `docker-compose` does the heavy lifting of creating a network & connecting containers to it.
 
