@@ -286,6 +286,8 @@ If you're accustomed to using individual Docker commands to manage your containe
 
 ## Docker Compose vs K8s
 
+This table succinctly highlights the differences between Docker Compose and Kubernetes, showing their respective use cases and functionalities.
+
 | Aspect                      | Docker Compose                                         | Kubernetes                                              |
 |-----------------------------|--------------------------------------------------------|---------------------------------------------------------|
 | **Primary Use**             | Development & testing environments                    | Large-scale, production environments                    |
@@ -296,7 +298,7 @@ If you're accustomed to using individual Docker commands to manage your containe
 | **Portability**             | Mostly local; limited portability                      | Across various cloud providers and on-premises          |
 | **Development to Production Workflow** | Used for local development                            | Used for production deployment                          |
 
-This table succinctly highlights the differences between Docker Compose and Kubernetes, showing their respective use cases and functionalities.
+![infra diff for compose vs k8s](../../../assets/k8s-vs-compose.png)
 
 ## References
 
