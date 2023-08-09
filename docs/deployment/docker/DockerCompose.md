@@ -298,7 +298,12 @@ This table succinctly highlights the differences between Docker Compose and Kube
 | **Portability**             | Mostly local; limited portability                      | Across various cloud providers and on-premises          |
 | **Development to Production Workflow** | Used for local development                            | Used for production deployment                          |
 
+Nothing explains better than a picture:
+
 ![infra diff for compose vs k8s](../../../assets/k8s-vs-compose.png)
+
+- Docker Compose is a tool for defining and orchestrating `multi-container` Docker applications at your local machine.
+- While Kubernetes is used for managing `multi-container` applications in your distributed production environment
 
 ## References
 
