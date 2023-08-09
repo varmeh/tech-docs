@@ -60,6 +60,7 @@ You can get the ID of the container by using the `docker ps -a` command, which l
 | Usage | Command | Description |
 | ----- | ------- | ----------- |
 | Basic `docker run` | `docker run ubuntu` | Creates and starts a new container based on the `ubuntu` image. |
+| Name a container | `docker run --name redis-container redis` | Starts a redis container named `redis-container` |
 | Run in Interactive Mode | `docker run -it ubuntu` | Starts an interactive shell in the `ubuntu` container. |
 | Run in Detached Mode | `docker run -d nginx` | Runs the `nginx` server in the background (detached mode). |
 | Port Mapping | `docker run -d -p 8080:80 nginx` | Maps port 8080 on the host to port 80 on the `nginx` container. |
@@ -67,7 +68,15 @@ You can get the ID of the container by using the `docker ps -a` command, which l
 | Specifying Environment Variables | `docker run -e "ENV_VAR=value" ubuntu` | Sets an environment variable `ENV_VAR` with the value `value`. |
 | Running a Specific Command | `docker run ubuntu echo "Hello, World!"` | Starts a new container from the `ubuntu` image and executes the `echo "Hello, World!"` command. |
 | Removing the Container after Exit | `docker run --rm ubuntu echo "Hello, World!"` | Removes the container once the `echo` command completes and the container exits. |
-| Running an Interactive Shell | `docker run -it ubuntu /bin/bash` | Starts a `ubuntu` container and launches a bash shell on it. |
+
+**Recommended**:
+
+```bash
+docker run -d --rm --name redis-container -p 6379:6379 redis
+```
+
+- `-d` - ensures running in background as a daemon
+- `--rm` - ensures container is removed after exit. So, we don't have to manually remove it using `docker rm` command
 
 ## docker stop
 
