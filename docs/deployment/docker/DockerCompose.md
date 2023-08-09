@@ -230,11 +230,10 @@ version: '3'
 services:
   redis-container:
     image: 'redis:latest'
-    ports:
-      - '6379:6379'
 
   counterapp:
     image: 'counterapp'
+    build: .
     ports:
       - '3001:3001'
     environment:
