@@ -18,12 +18,13 @@
     - [Benefits of Docker Compose](#benefits-of-docker-compose)
   - [Docker Compose vs K8s](#docker-compose-vs-k8s)
   - [References](#references)
+    - [Compose Basics](#compose-basics)
+    - [Stepher Grider Course Reference](#stepher-grider-course-reference)
+    - [Compose vs K8s](#compose-vs-k8s)
 
-Docker Compose was primarily designed to facilitate the orchestration of `multi-container` applications.
+Docker Compose was primarily designed to facilitate the orchestration of `multi-container` applications
 
-But it simplifies the process of running any docker container by documenting all the command line information in a single file
-
-It simpifies connecting containers & other resources together.
+It simpifies starting & connecting containers & other resources together.
 
 To elaborate, follow the example below.
 
@@ -306,7 +307,20 @@ Nothing explains better than a picture:
 
 ## References
 
-- [Stephen Grider Docker Compose Explanation](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11436998#overview)
+### Compose Basics
+
+- [docker-compose cheatsheet](https://devhints.io/docker-compose)
+- [compose file reference](https://docs.docker.com/compose/compose-file/05-services/#build)
+- [docker-compose vs docker compose](https://docs.docker.com/compose/history/#docker-compose-cli-versioning)
+- [docker compose cli](https://docs.docker.com/compose/reference)
+
+### Stepher Grider Course Reference
+  
+- [Docker Compose Explanation](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11436998#overview)
+
+- [Docker Volume](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11437066#overview)
+
+### Compose vs K8s
 
 - [K21Academy](https://k21academy.com/docker-kubernetes/docker-compose-vs-kubernetes/#:~:text=Docker%20Compose%20deploys%20multi%2Dcontainer,multiple%20virtual%20or%20physical%20machines.)
 
