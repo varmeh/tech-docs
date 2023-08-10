@@ -19,7 +19,9 @@
   - [Docker Compose vs K8s](#docker-compose-vs-k8s)
   - [References](#references)
 
-Docker Compose facilitates the orchestration of `multi-container` applications.
+Docker Compose was primarily designed to facilitate the orchestration of `multi-container` applications.
+
+But it simplifies the process of running any docker container by documenting all the command line information in a single file
 
 It simpifies connecting containers & other resources together.
 
@@ -259,7 +261,10 @@ In essence, `docker-compose` does the heavy lifting of creating a network & conn
 
 ## Docker Compose Primer
 
-Docker Compose is a tool for defining and orchestrating `multi-container` Docker applications.
+1. Docker Compose is a tool primarily used orchestrating `multi-container` Docker applications
+2. It could be used to run single container apps as well where all the inputs like `environment variables`, `ports`, `volumes`, etc. are defined in the `docker-compose.yml` file
+3. Whatever the case, command to start the app is `docker compose up`
+4. Unlike `docker cli`, there is no need to pass the `--rm` flag to remove the container after it exits
 
 If you're accustomed to using individual Docker commands to manage your containers, Docker Compose will streamline this process, allowing you to define entire applications in a single file.
 
