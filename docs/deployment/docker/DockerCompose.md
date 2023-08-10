@@ -370,13 +370,11 @@ Nothing explains better than a picture:
 ### Stepher Grider Course Reference
   
 - [Docker Compose Explanation](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11436998#overview)
-
 - [Docker Volume](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11437066#overview)
+- [dockerfile custom name in compose file](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11437074#overview)
 
 ### Compose vs K8s
 
 - [K21Academy](https://k21academy.com/docker-kubernetes/docker-compose-vs-kubernetes/#:~:text=Docker%20Compose%20deploys%20multi%2Dcontainer,multiple%20virtual%20or%20physical%20machines.)
-
 - [Prod Infra by K8s](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/What-is-Kubernetes-vs-Docker-Compose-How-these-DevOps-tools-compare)
-
 - [Local to Prod](https://levelup.gitconnected.com/docker-compose-vs-kubernetes-understanding-the-differences-and-choosing-the-right-tool-32f3e16fdb43)
