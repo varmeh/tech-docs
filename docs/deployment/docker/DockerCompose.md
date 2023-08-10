@@ -16,6 +16,9 @@
   - [Docker Compose Primer](#docker-compose-primer)
     - [Key Features](#key-features)
     - [Benefits of Docker Compose](#benefits-of-docker-compose)
+    - [Key Commands](#key-commands)
+      - [docker compose up](#docker-compose-up)
+      - [docker compose down](#docker-compose-down)
   - [Docker Compose vs K8s](#docker-compose-vs-k8s)
   - [References](#references)
     - [Compose Basics](#compose-basics)
@@ -283,6 +286,56 @@ If you're accustomed to using individual Docker commands to manage your containe
 - **Ease of Use**: One command to start/stop the entire application.
 - **Version Control**: Keep the `docker-compose.yml` in your version control system for better tracking.
 - **Rapid Prototyping**: Quickly spin up development environments.
+
+### Key Commands
+
+#### docker compose up
+
+The `docker-compose up` command is used to build, (re)create, start, and attach to containers for a service defined in a `docker-compose.yml` file.
+
+```bash
+docker compose up
+```
+
+- Make sure you're in the directory containing the `docker-compose.yml` file, or specify its location using `-f`
+- Reference for **[Key Options](https://docs.docker.com/engine/reference/commandline/compose_up/)**
+
+- Examples:
+
+| **Usage Description**                | **Command**                                         | **Explanation**                                                                    |
+|--------------------------------------|------------------------------------------------------|------------------------------------------------------------------------------------|
+| **Basic Start**                      | `docker-compose up`                                  | Starts all the services defined in the `docker-compose.yml` file.                   |
+| **Detach Mode**                      | `docker-compose up -d`                               | Runs containers in the background.                                                 |
+| **Specific Service**                 | `docker-compose up service_name`                     | Only starts the specified service and its dependencies.                            |
+| **Build and Start**                  | `docker-compose up --build`                          | Builds the images before starting the containers.                                  |
+| **Scale a Service**                  | `docker-compose up --scale service_name=3`           | Starts multiple instances of a service.                                             |
+| **Force Recreate**                   | `docker-compose up --force-recreate`                 | Forces recreating containers even if they are up-to-date.                           |
+| **Remove Orphans**                   | `docker-compose up --remove-orphans`                 | Removes containers for services not defined in the current configuration.           |
+
+This table neatly organizes the different ways you can use the `docker-compose up` command for various purposes.
+
+#### docker compose down
+
+- Stop and remove containers, networks
+
+```bash
+docker compose down
+```
+
+**Description**: Stops containers and removes containers, networks, volumes, and images created by `up`.
+
+By default, the only things removed are:
+
+- Containers for services defined in the Compose file
+- Networks defined in the networks section of the Compose file
+- The default network, if one is used
+- Networks and volumes defined as external are never removed.
+
+Anonymous volumes are not removed by default. However, as they don’t have a stable name, they will not be automatically mounted by a subsequent up.
+
+For data that needs to persist between updates, use explicit paths as bind mounts or named volumes.
+
+- Reference for **[Options](https://docs.docker.com/engine/reference/commandline/compose_down/)**
 
 ## Docker Compose vs K8s
 
