@@ -31,7 +31,7 @@ It simpifies starting & connecting containers & other resources together.
 
 To elaborate, follow the example below.
 
-## Multi Container App
+## [Multi Container App](https://docs.docker.com/get-started/07_multi_container/)
 
 Let's build a multi-container `counterapp` with `expressjs` & `redis` to track the number of times the api is called.
 
@@ -372,6 +372,8 @@ Nothing explains better than a picture:
 - [Docker Compose Explanation](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11436998#overview)
 - [Docker Volume](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11437066#overview)
 - [dockerfile custom name in compose file](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11437074#overview)
+- [Multi-Step Build React App using Nginx](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11437092#overview)
+- [Ngnix Routing in dev mode using Docker compose](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11437294#overview)
 
 ### Compose vs K8s
 

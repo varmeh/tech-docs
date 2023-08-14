@@ -17,6 +17,8 @@
     - [Considerations](#considerations)
   - [References](#references)
     - [Dockerfile](#dockerfile-1)
+    - [Dockerfile Best Practices](#dockerfile-best-practices)
+    - [Dockerfile Multistage Builds](#dockerfile-multistage-builds)
     - [.dockerignore](#dockerignore)
 
 ## Dockerfile
@@ -219,5 +221,9 @@ node_modules/
 ## References
 
 ### [Dockerfile](https://docs.docker.com/engine/reference/builder)
+
+### [Dockerfile Best Practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+
+### [Dockerfile Multistage Builds](https://docs.docker.com/build/building/multi-stage/)
 
 ### [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file)
