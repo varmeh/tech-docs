@@ -19,13 +19,19 @@
   - [Key Components](#key-components)
     - [1. Control Plane Components](#1-control-plane-components)
     - [2. Node Components](#2-node-components)
-  - [Ksy Concepts vs Components](#ksy-concepts-vs-components)
+  - [Key Concepts vs Components](#key-concepts-vs-components)
+    - [Comparisons](#comparisons)
+      - [Pods vs ReplicaSets vs Deployments](#pods-vs-replicasets-vs-deployments)
   - [K8s using Docker Desktop](#k8s-using-docker-desktop)
     - [What is it?](#what-is-it)
     - [Enabling Kubernetes](#enabling-kubernetes)
     - [How It Works Under the Hood](#how-it-works-under-the-hood)
     - [Mac HyperKit Hypervisor](#mac-hyperkit-hypervisor)
   - [K8s Commands](#k8s-commands)
+  - [References](#references)
+    - [Stephen Grider Tutorial](#stephen-grider-tutorial)
+    - [Docker Documentation](#docker-documentation)
+    - [Misc](#misc)
 
 ## What is Kubernetes?
 
@@ -112,11 +118,34 @@
 - **kube-proxy:** Manages network rules and enables communication to and from your pods.
 - **Container Runtime:** Software for running containers (e.g., Docker, containerd).
 
-## Ksy Concepts vs Components
+## Key Concepts vs Components
 
 - The `key concepts` are the fundamental building blocks you work with when defining and interacting with your applications in Kubernetes
 - The `key components` are the underlying mechanisms that make Kubernetes work as a system
 - Both are crucial to understanding how to effectively work with Kubernetes
+
+### Comparisons
+
+#### Pods vs ReplicaSets vs Deployments
+
+| Feature                      | Pod           | ReplicaSet     | Deployment      |
+|------------------------------|---------------|----------------|-----------------|
+| **Definition**               | Single unit hosting one or more containers | Ensures desired number of Pods are running | Manages ReplicaSets & enables rolling updates |
+| **Granularity**              | Individual container(s) | Group of identical Pods | Manages multiple ReplicaSets for different versions |
+| **Scaling**                  | Manual        | Manual         | Automatic (up & down) |
+| **Rolling Updates**          | Not supported | Not supported  | Supported        |
+| **Rollbacks**                | Not supported | Not supported  | Supported        |
+| **Recovery**                 | No automatic replacement | Replaces failed Pods | Replaces failed Pods through ReplicaSets |
+| **Versioning**               | N/A           | N/A            | Manages different versions with ease |
+| **Use Case**                 | Basic container orchestration | Ensuring specific count of identical Pods | Full application lifecycle management |
+
+**Summary**:
+
+- **Pod:** A foundational unit containing one or more containers. Useful for simple scenarios but lacks automation features.
+- **ReplicaSet:** Ensures that a specified number of identical Pods are running. Can replace failed Pods but doesn't support updates or scaling easily.
+- **Deployment:** A higher-level abstraction that manages ReplicaSets, providing seamless scaling, updates, rollbacks, and versioning.
+
+![pods vs deployments](../../../assets/podsVsDeployments.png)
 
 ## K8s using Docker Desktop
 
@@ -170,3 +199,19 @@
 | `kubectl top`                  | Display resource usage (CPU/Memory) for nodes or pods.         | `kubectl top nodes`                               |
 
 These commands cover most of the everyday tasks you would perform with Kubernetes, from managing resources to viewing logs and scaling applications. Remember to replace `<resource>` with the actual resource type and name you want to interact with!
+
+## References
+
+### Stephen Grider Tutorial
+
+- [Services in K8s](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11482938#overview)
+- [Deployment vs Pods](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11482960#overview)
+
+### Docker Documentation
+
+- [Concepts](https://kubernetes.io/docs/concepts/overview/)
+- [Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
+### Misc
+
+- [Kuberneter 101](https://medium.com/google-cloud/kubernetes-101-pods-nodes-containers-and-clusters-c1509e409e16)
