@@ -27,3 +27,4 @@ Reference Tech Docs
 | [Docker Commands](./docs/deployment/docker/DockerCommandsCategorization.md) | This document list & categorizes most docker commands  | Docker |
 | [Docker Files](./docs/deployment/docker/FilesInDocker.md) | Dockerfile & .dockerignore explained  | Docker |
 | [Docker Compose Primer](./docs/deployment/docker/DockerCompose.md) | Docker Compose Primer  | Docker |
+| [Kubernetes Primer](./docs/deployment/k8s/K8sPrimer.md) | K8s Primer  | K8s |
