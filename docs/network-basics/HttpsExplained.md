@@ -37,3 +37,7 @@
 - DNS is used to find the IP address of the server
 - CA is used to ensure trust in the server's identity
 - HTTPS (with the help of asymmetric and symmetric encryption) is used to secure the communication between the client and the server
+
+## 7. References
+
+- [Video - How HTTPS Works](https://www.youtube.com/watch?v=j9QmMEWmcfo&ab_channel=ByteByteGo)

@@ -218,3 +218,4 @@ These commands cover most of the everyday tasks you would perform with Kubernete
 ### Misc
 
 - [Kuberneter 101](https://medium.com/google-cloud/kubernetes-101-pods-nodes-containers-and-clusters-c1509e409e16)
+- [Helm - K8s Package Manager](https://helm.sh/docs/)
