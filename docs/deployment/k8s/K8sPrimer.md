@@ -205,7 +205,10 @@ These commands cover most of the everyday tasks you would perform with Kubernete
 ### Stephen Grider Tutorial
 
 - [Services in K8s](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11482938#overview)
+- [Why use Services](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11482970#overview)
 - [Deployment vs Pods](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11482960#overview)
+- [K8s Volumes](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11514746#overview)
+- [Load Balancing with Ingress](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11582340#overview)
 
 ### Docker Documentation
 
