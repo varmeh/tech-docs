@@ -29,9 +29,9 @@
     - [Mac HyperKit Hypervisor](#mac-hyperkit-hypervisor)
   - [K8s Commands](#k8s-commands)
   - [References](#references)
+    - [Offical Documentation Documentation](#offical-documentation-documentation)
+    - [Amazing Blogs](#amazing-blogs)
     - [Stephen Grider Tutorial](#stephen-grider-tutorial)
-    - [Docker Documentation](#docker-documentation)
-    - [Misc](#misc)
 
 ## What is Kubernetes?
 
@@ -202,6 +202,23 @@ These commands cover most of the everyday tasks you would perform with Kubernete
 
 ## References
 
+### Offical Documentation Documentation
+
+- [K8s Concepts](https://kubernetes.io/docs/concepts/overview/)
+- [K8s Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+- [Helm - K8s Package Manager](https://helm.sh/docs/)
+
+### Amazing Blogs
+
+- [Docker & Kubernetes Primer](https://medium.com/free-code-camp/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882)
+- [K8s Pictorially](https://blog.tarkalabs.com/know-kubernetes-pictorially-f6e6a0052dd0)
+- [Key Concepts](https://towardsdatascience.com/key-kubernetes-concepts-62939f4bc08e)
+- [Kuberneter 101](https://medium.com/google-cloud/kubernetes-101-pods-nodes-containers-and-clusters-c1509e409e16)
+- [What is a Pod - A Primer on Networking in K8s](https://medium.com/google-cloud/understanding-kubernetes-networking-pods-7117dd28727)
+- [Nodeport vs LoadBalancer vs Ingress](https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0)
+- [Config Maps & Secrets](https://medium.com/google-cloud/kubernetes-configmaps-and-secrets-68d061f7ab5b)
+- [K8s CLI Tools](https://medium.com/free-code-camp/how-to-set-up-a-serious-kubernetes-terminal-dd07cab51cd4)
+
 ### Stephen Grider Tutorial
 
 - [Services in K8s](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11482938#overview)
@@ -209,13 +226,4 @@ These commands cover most of the everyday tasks you would perform with Kubernete
 - [Deployment vs Pods](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11482960#overview)
 - [K8s Volumes](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11514746#overview)
 - [Load Balancing with Ingress](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11582340#overview)
-
-### Docker Documentation
-
-- [Concepts](https://kubernetes.io/docs/concepts/overview/)
-- [Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-
-### Misc
-
-- [Kuberneter 101](https://medium.com/google-cloud/kubernetes-101-pods-nodes-containers-and-clusters-c1509e409e16)
-- [Helm - K8s Package Manager](https://helm.sh/docs/)
+- [Https Setup for K8s](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11628346#overview)
