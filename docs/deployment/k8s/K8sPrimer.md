@@ -9,7 +9,7 @@
   - [Key Components](#key-components)
     - [Control Plane Components](#control-plane-components)
     - [Node Components](#node-components)
-  - [Clarifications](#clarifications)
+  - [Concepts Elaborated](#concepts-elaborated)
     - [Namespace](#namespace)
       - [Why Use Namespaces?](#why-use-namespaces)
       - [Creating a Namespace](#creating-a-namespace)
@@ -100,9 +100,9 @@
 | **kube-proxy**          | Manages network rules and enables communication to and from your pods. |
 | **Container Runtime**   | Software for running containers (e.g., Docker, containerd).       |
 
-## Clarifications
+## Concepts Elaborated
 
-- Following contructs are not very clearly explained
+- A few constructs which are not clearly documented will be covered in this section
 
 ### [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
 
