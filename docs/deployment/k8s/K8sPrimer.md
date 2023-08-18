@@ -19,9 +19,14 @@
   - [Key Components](#key-components)
     - [1. Control Plane Components](#1-control-plane-components)
     - [2. Node Components](#2-node-components)
-  - [Key Concepts vs Components](#key-concepts-vs-components)
-    - [Comparisons](#comparisons)
-      - [Pods vs ReplicaSets vs Deployments](#pods-vs-replicasets-vs-deployments)
+  - [Clarifications](#clarifications)
+    - [Labels \& Selectors](#labels--selectors)
+      - [Labels](#labels)
+      - [Label Selectors](#label-selectors)
+        - [Equality-Based Selectors](#equality-based-selectors)
+        - [Set-Based Selectors](#set-based-selectors)
+    - [Key Concepts vs Components](#key-concepts-vs-components)
+    - [Pods vs ReplicaSets vs Deployments](#pods-vs-replicasets-vs-deployments)
   - [K8s using Docker Desktop](#k8s-using-docker-desktop)
     - [What is it?](#what-is-it)
     - [Enabling Kubernetes](#enabling-kubernetes)
@@ -118,15 +123,78 @@
 - **kube-proxy:** Manages network rules and enables communication to and from your pods.
 - **Container Runtime:** Software for running containers (e.g., Docker, containerd).
 
-## Key Concepts vs Components
+## Clarifications
+
+### Labels & Selectors
+
+#### [Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+
+- Labels are `key-value` pairs attached to Kubernetes objects like Pods, Services, etc.
+- Labels enable users to map their own organizational structures onto system objects in a loosely coupled fashion
+- `A single object can have multiple labels.`
+- `Labels are not unique`. Similar objects often share labels.
+- Labels can be attached to objects at creation time and subsequently added and modified at any time
+- Usages:
+  - To identify attributes of objects that are meaningful and relevant to users
+  - To filter resouces using `label selectors`
+
+```yaml
+metadata:
+  labels:
+    env: prod
+    tier: backend
+    app: auth
+    release: stable
+```
+
+- Above example has 3 labels
+
+#### Label Selectors
+
+- Selectors are expressions that match against the labels of resources
+- Think of selectors as search queries that find objects with specific labels.
+- 2 types of Selectors:
+
+##### Equality-Based Selectors
+
+- Equality-based selectors allow you to filter resources based on exact key-value matches.
+
+```yaml
+selector:
+  matchLabels:
+    env: prod
+    app: web
+```
+
+- The above example will match resources that have `both` the `env: prod` and `app: web` labels.
+
+##### Set-Based Selectors
+
+- Set-based selectors allow for more flexibility, letting you match resources based on conditions like `existence`, `in`, `not in`, etc.
+
+```yaml
+selector:
+  matchExpressions:
+    - {key: env, operator: In, values: [prod, staging]}
+    - {key: app, operator: NotIn, values: [auth]}
+    - {key: tier, operator: Exists}
+```
+
+In this example:
+
+- The first expression matches if the `env` label has a value of either `prod` or `staging`.
+- The second expression matches if the `app` label does not have the value `auth`.
+- The third expression matches if the `tier` label exists, regardless of its value.
+
+You can `combine` equality-based and set-based selectors as needed to match resources based on complex criteria.
+
+### Key Concepts vs Components
 
 - The `key concepts` are the fundamental building blocks you work with when defining and interacting with your applications in Kubernetes
 - The `key components` are the underlying mechanisms that make Kubernetes work as a system
 - Both are crucial to understanding how to effectively work with Kubernetes
 
-### Comparisons
-
-#### Pods vs ReplicaSets vs Deployments
+### Pods vs ReplicaSets vs Deployments
 
 | Feature                      | Pod           | ReplicaSet     | Deployment      |
 |------------------------------|---------------|----------------|-----------------|
