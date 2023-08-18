@@ -23,10 +23,12 @@
       - [Equality-Based Selectors](#equality-based-selectors)
       - [Set-Based Selectors](#set-based-selectors)
     - [Annotations vs Labels](#annotations-vs-labels)
+    - [Controllers](#controllers)
+      - [Example: ReplicaSet Controller](#example-replicaset-controller)
     - [Pods vs ReplicaSets vs Deployments](#pods-vs-replicasets-vs-deployments)
   - [References](#references)
     - [Amazing Blogs](#amazing-blogs)
-    - [Offical Documentation Documentation](#offical-documentation-documentation)
+    - [Offical Documentation](#offical-documentation)
     - [Stephen Grider Tutorial](#stephen-grider-tutorial)
 
 ## What is Kubernetes?
@@ -291,6 +293,54 @@ You can `combine` equality-based and set-based selectors as needed to match reso
 | **Character Limit**  | 63 chars for key and value| No specific limit           |
 | **Validation**       | Specific constraints      | No specific constraints     |
 
+### Controllers
+
+- Controllers automate the management of different aspects of the cluster.
+- They handle aspects such as replication, deployment, scheduling, and more.
+- They continuously watch the current state of the cluster, compare it to the desired state defined in the configuration, and take actions to align the two states.
+- Controllers encapsulate the control logic that drives the automated management of Kubernetes clusters, allowing for self-healing, scaling, and updating of applications.
+
+- `How Controllers Work`
+
+  - **Observe:** They continuously monitor the current state of the cluster.
+  - **Analyze:** They compare the current state with the desired state defined in the configuration.
+  - **Act:** They perform actions to reconcile the current state with the desired state.
+
+- `Types of Controllers`
+
+| Controller            | Description                                                                 |
+|-----------------------|-----------------------------------------------------------------------------|
+| ReplicaSet Controller | Ensures the desired number of replicas for a Pod are running. Creates or deletes Pods as necessary.  |
+| Deployment Controller | Manages the lifecycle of applications. Facilitates updates, rollbacks, and scaling.  |
+| DaemonSet Controller  | Ensures that specific Pods run on all (or selected) nodes in the cluster.    |
+| StatefulSet Controller| Manages stateful applications with stable network IDs, persistent storage, and ordered deployment. |
+| Job Controller        | Manages one-off tasks that need to run to completion.                        |
+| CronJob Controller    | Schedules Jobs to run at specified times or intervals.                       |
+
+#### Example: ReplicaSet Controller
+
+Here's a simplified example of a ReplicaSet YAML definition:
+
+```yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: my-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+```
+
 ### Pods vs ReplicaSets vs Deployments
 
 | Feature                      | Pod           | ReplicaSet     | Deployment      |
@@ -325,7 +375,7 @@ You can `combine` equality-based and set-based selectors as needed to match reso
 - [Config Maps & Secrets](https://medium.com/google-cloud/kubernetes-configmaps-and-secrets-68d061f7ab5b)
 - [K8s CLI Tools](https://medium.com/free-code-camp/how-to-set-up-a-serious-kubernetes-terminal-dd07cab51cd4)
 
-### Offical Documentation Documentation
+### Offical Documentation
 
 - [K8s Concepts](https://kubernetes.io/docs/concepts/overview/)
 - [K8s Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
