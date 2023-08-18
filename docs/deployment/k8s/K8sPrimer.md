@@ -2,46 +2,31 @@
 
 - [Kubernetes: A Quick Primer](#kubernetes-a-quick-primer)
   - [What is Kubernetes?](#what-is-kubernetes)
+  - [Local Deployment](#local-deployment)
   - [Key Concepts](#key-concepts)
-    - [1. Cluster](#1-cluster)
-    - [2. Node](#2-node)
-    - [3. Pod](#3-pod)
-    - [4. Service](#4-service)
-    - [5. Deployment](#5-deployment)
-    - [6. ConfigMap \& Secret](#6-configmap--secret)
-    - [7. Volume](#7-volume)
-    - [8. Namespace](#8-namespace)
+    - [Hardware Concepts](#hardware-concepts)
+    - [Software Concepts](#software-concepts)
+  - [Key Components](#key-components)
+    - [Control Plane Components](#control-plane-components)
+    - [Node Components](#node-components)
+  - [Clarifications](#clarifications)
+    - [Namespace](#namespace)
       - [Why Use Namespaces?](#why-use-namespaces)
       - [Creating a Namespace](#creating-a-namespace)
       - [Adding a Namespace](#adding-a-namespace)
       - [Filtering by Namespace](#filtering-by-namespace)
       - [Default Namespaces](#default-namespaces)
       - [Resource Quotas and Limits](#resource-quotas-and-limits)
-    - [9. ReplicaSet](#9-replicaset)
-    - [10. StatefulSet](#10-statefulset)
-    - [11. DaemonSet](#11-daemonset)
-    - [12. Ingress](#12-ingress)
-    - [13. Horizontal Pod Autoscaler (HPA)](#13-horizontal-pod-autoscaler-hpa)
-  - [Key Components](#key-components)
-    - [1. Control Plane Components](#1-control-plane-components)
-    - [2. Node Components](#2-node-components)
-  - [Clarifications](#clarifications)
     - [Labels \& Selectors](#labels--selectors)
       - [Labels](#labels)
       - [Label Selectors](#label-selectors)
         - [Equality-Based Selectors](#equality-based-selectors)
         - [Set-Based Selectors](#set-based-selectors)
-    - [Key Concepts vs Components](#key-concepts-vs-components)
     - [Pods vs ReplicaSets vs Deployments](#pods-vs-replicasets-vs-deployments)
-  - [K8s using Docker Desktop](#k8s-using-docker-desktop)
-    - [What is it?](#what-is-it)
-    - [Enabling Kubernetes](#enabling-kubernetes)
-    - [How It Works Under the Hood](#how-it-works-under-the-hood)
-    - [Mac HyperKit Hypervisor](#mac-hyperkit-hypervisor)
   - [K8s Commands](#k8s-commands)
   - [References](#references)
-    - [Offical Documentation Documentation](#offical-documentation-documentation)
     - [Amazing Blogs](#amazing-blogs)
+    - [Offical Documentation Documentation](#offical-documentation-documentation)
     - [Stephen Grider Tutorial](#stephen-grider-tutorial)
 
 ## What is Kubernetes?
@@ -49,44 +34,78 @@
 - Kubernetes, or `K8s`, is an open-source orchestration system for automating deployment, scaling, and management of containerized applications.
 - It manages clusters of servers and runs containers across them, balancing the load.
 
+## Local Deployment
+
+- Multiple known alternatives
+- `Docker Desktop` is most popular
+- [Refer this doc for details](./K8sWithDockerDesktop.md)
+
 ## [Key Concepts](https://kubernetes.io/docs/concepts/overview/)
 
-### 1. Cluster
+- The `key concepts` are the fundamental building blocks you work with when defining and interacting with your applications in Kubernetes
+- [Refer Amazing Blogs section for details](#amazing-blogs)
 
-- A set of machines called nodes that run containerized applications.
-- Contains both control plane nodes (master) and worker nodes.
+### Hardware Concepts
 
-### 2. Node
+- The Hardware Concepts section refers to the physical or virtual resources used by Kubernetes to  run your applications.
 
-- A physical or virtual machine that runs the containers.
-- Managed by the control plane.
+| Concept              | Description                                                                                                  |
+|----------------------|--------------------------------------------------------------------------------------------------------------|
+| **Node**             | A physical or virtual machine running Kubernetes, capable of hosting Pods.                                   |
+| **Cluster**          | A set of worker machines, called nodes, that run containerized applications managed by Kubernetes control planes. |
+| **Persistent Volume** | A piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes. It is a resource in the cluster just like a node is a cluster resource. |
 
-### 3. Pod
+### Software Concepts
 
-- Smallest deployable unit in Kubernetes.
-- Contains one or more containers.
+- Encompasses the logical constructs and abstractions that make up Kubernetes' functionality
 
-### 4. Service
+| Concept                     | Description                                                                                                         |
+|-----------------------------|---------------------------------------------------------------------------------------------------------------------|
+| **Pod**                     | The smallest deployable unit, encapsulating one or more containers.                                                  |
+| **Service**                 | A set of Pods working together, exposed as a network service.                                                        |
+| **Deployment**              | Manages the desired state for Pods and ReplicaSets. Supports updates, rollbacks, and scaling.                        |
+| **ReplicaSet**              | Ensures that a specified number of replicas of a Pod are running at all times.                                       |
+| **Namespace**               | Logical partitioning of a Kubernetes cluster, used to isolate resources.                                             |
+| **ConfigMap**               | Allows you to decouple environment-specific configuration from your container images.                                 |
+| **Secret**                  | Used to store sensitive information, such as passwords or API keys in `base64` format                                                  |
+| **Volume**                  | Represents a storage location, either on the host or a remote storage solution.                                       |
+| **Ingress**                 | Manages external access to services within a cluster, typically HTTP.                                                |
+| **StatefulSet**             | Manages the deployment and scaling of a set of Pods, with persistent storage and unique network identifiers.          |
+| **DaemonSet**               | Ensures all or some Nodes run a copy of a Pod, typically used for node-level system services.                        |
+| **Horizontal Pod Autoscaler** | Automatically scales the number of Pods in a deployment, replica set, or replication controller based on observed CPU or memory utilization. |
 
-- Exposes pods to the network, either internally within the cluster or externally.
-- Handles load balancing across multiple pods.
+## [Key Components](https://kubernetes.io/docs/concepts/overview/components/)
 
-### 5. Deployment
+- These are the underlying mechanisms that make Kubernetes work as a system
+- [Refer doc for details](https://kubernetes.io/docs/concepts/overview/components/)
 
-- Defines the desired state of an application.
-- Manages the scaling and updating of pods.
+### Control Plane Components
 
-### 6. ConfigMap & Secret
+- Manage the overall state of the cluster
 
-- `ConfigMap`: Manages configuration data as key-value pairs.
-- `Secret`: Manages sensitive information, like passwords.
+| Component                | Description                                                          |
+|--------------------------|----------------------------------------------------------------------|
+| **kube-apiserver**       | Exposes the Kubernetes API.                                          |
+| **etcd**                 | Consistent and highly-available key-value store for all cluster data. |
+| **kube-scheduler**       | Schedules pods to run on nodes.                                      |
+| **kube-controller-manager** | Runs controllers for nodes, replicas, endpoints, etc.                |
+| **cloud-controller-manager** | Runs controllers specific to the underlying cloud provider.          |
 
-### 7. Volume
+### Node Components
 
-- Provides storage to containers within a pod.
-- Can be persistent across pod restarts.
+- Run on individual nodes and handle the running of containers
 
-### 8. [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
+| Component               | Description                                                       |
+|-------------------------|-------------------------------------------------------------------|
+| **kubelet**             | Ensures that containers are running in a pod.                      |
+| **kube-proxy**          | Manages network rules and enables communication to and from your pods. |
+| **Container Runtime**   | Software for running containers (e.g., Docker, containerd).       |
+
+## Clarifications
+
+- Following contructs are not very clearly explained
+
+### [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
 
 - It provides a mechanism for isolating groups of resources within a single cluster.
 - Names of resources need to be unique within a namespace, but not across namespaces.
@@ -159,46 +178,6 @@ spec:
     requests.cpu: '4'
 ```
 
-### 9. ReplicaSet
-
-- Ensures the specified number of replicas for a pod are running.
-- Managed by deployments.
-
-### 10. StatefulSet
-
-- Manages stateful applications, maintaining unique identities and states across pods.
-
-### 11. DaemonSet
-
-- Ensures a copy of a pod runs on specific or all nodes in the cluster.
-
-### 12. Ingress
-
-- Manages external access to services within the cluster.
-- Provides routing and load balancing.
-
-### 13. Horizontal Pod Autoscaler (HPA)
-
-- Automatically scales the number of pods based on observed metrics like CPU usage.
-
-## [Key Components](https://kubernetes.io/docs/concepts/overview/components/)
-
-### 1. Control Plane Components
-
-- **kube-apiserver:** Exposes the Kubernetes API.
-- **etcd:** Consistent and highly-available key-value store for all cluster data.
-- **kube-scheduler:** Schedules pods to run on nodes.
-- **kube-controller-manager:** Runs controllers for nodes, replicas, endpoints, etc.
-- **cloud-controller-manager:** Runs controllers specific to the underlying cloud provider.
-
-### 2. Node Components
-
-- **kubelet:** Ensures that containers are running in a pod.
-- **kube-proxy:** Manages network rules and enables communication to and from your pods.
-- **Container Runtime:** Software for running containers (e.g., Docker, containerd).
-
-## Clarifications
-
 ### Labels & Selectors
 
 #### [Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
@@ -262,12 +241,6 @@ In this example:
 
 You can `combine` equality-based and set-based selectors as needed to match resources based on complex criteria.
 
-### Key Concepts vs Components
-
-- The `key concepts` are the fundamental building blocks you work with when defining and interacting with your applications in Kubernetes
-- The `key components` are the underlying mechanisms that make Kubernetes work as a system
-- Both are crucial to understanding how to effectively work with Kubernetes
-
 ### Pods vs ReplicaSets vs Deployments
 
 | Feature                      | Pod           | ReplicaSet     | Deployment      |
@@ -288,37 +261,6 @@ You can `combine` equality-based and set-based selectors as needed to match reso
 - **Deployment:** A higher-level abstraction that manages ReplicaSets, providing seamless scaling, updates, rollbacks, and versioning.
 
 ![pods vs deployments](../../../assets/podsVsDeployments.png)
-
-## K8s using Docker Desktop
-
-### What is it?
-
-- Docker Desktop for Mac includes a standalone Kubernetes server that runs on your Mac.
-
-### Enabling Kubernetes
-
-- **Access Preferences:** Go to the Preferences/Settings menu in Docker Desktop.
-- **Enable Kubernetes:** There's an option to enable Kubernetes, which will install the Kubernetes components necessary to run a single-node cluster locally.
-- **Configure (Optional):** You can customize the Kubernetes version and other settings if needed.
-- **Apply & Restart:** Click the "Apply & Restart" button, and Docker Desktop will set up a local Kubernetes cluster for you.
-
-### How It Works Under the Hood
-
-- **Kubernetes Inside Docker:** Docker Desktop runs the Kubernetes control plane and worker components inside Docker containers.
-- **Shared Resources:** It shares system resources with Docker, so you don't need a separate VM for Kubernetes.
-- **Integration with Docker CLI:** It integrates with your Docker CLI, allowing you to use `kubectl` commands just as you would with a remote cluster.
-- **Local Registry:** Supports a local registry, allowing for easier image sharing and testing.
-- **Networking:** It sets up networking so that you can communicate with your cluster using `localhost`.
-
-### Mac HyperKit Hypervisor
-
-- **Hypervisor.framework:**
-  - Docker Desktop uses macOS's Hypervisor.framework (*through HyperKit*) to run a lightweight Linux VM
-  - This is where your Docker containers (and Kubernetes) are actually running
-  - It is a lightweight, native macOS hypervisor based on xhyve. It's bundled with Docker Desktop
-
-- **Port Forwarding:** Docker Desktop handles port forwarding from the VM to your macOS system. When a service in a container inside the VM listens on a port, Docker Desktop forwards traffic from that port on `localhost` to the corresponding port on the VM.
-- **Kubernetes Services:** When you expose a Kubernetes service on a particular port, it's accessible at that port on `localhost` in your Mac’s browser or other networking tools.
 
 ## K8s Commands
 
@@ -344,12 +286,6 @@ These commands cover most of the everyday tasks you would perform with Kubernete
 
 ## References
 
-### Offical Documentation Documentation
-
-- [K8s Concepts](https://kubernetes.io/docs/concepts/overview/)
-- [K8s Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-- [Helm - K8s Package Manager](https://helm.sh/docs/)
-
 ### Amazing Blogs
 
 - [Docker & Kubernetes Primer](https://medium.com/free-code-camp/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882)
@@ -360,6 +296,12 @@ These commands cover most of the everyday tasks you would perform with Kubernete
 - [Nodeport vs LoadBalancer vs Ingress](https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0)
 - [Config Maps & Secrets](https://medium.com/google-cloud/kubernetes-configmaps-and-secrets-68d061f7ab5b)
 - [K8s CLI Tools](https://medium.com/free-code-camp/how-to-set-up-a-serious-kubernetes-terminal-dd07cab51cd4)
+
+### Offical Documentation Documentation
+
+- [K8s Concepts](https://kubernetes.io/docs/concepts/overview/)
+- [K8s Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+- [Helm - K8s Package Manager](https://helm.sh/docs/)
 
 ### Stephen Grider Tutorial
 
