@@ -17,11 +17,10 @@
       - [Filtering by Namespace](#filtering-by-namespace)
       - [Default Namespaces](#default-namespaces)
       - [Resource Quotas and Limits](#resource-quotas-and-limits)
-    - [Labels \& Selectors](#labels--selectors)
-      - [Labels](#labels)
-      - [Label Selectors](#label-selectors)
-        - [Equality-Based Selectors](#equality-based-selectors)
-        - [Set-Based Selectors](#set-based-selectors)
+    - [Labels](#labels)
+    - [Label Selectors](#label-selectors)
+      - [Equality-Based Selectors](#equality-based-selectors)
+      - [Set-Based Selectors](#set-based-selectors)
     - [Pods vs ReplicaSets vs Deployments](#pods-vs-replicasets-vs-deployments)
   - [References](#references)
     - [Amazing Blogs](#amazing-blogs)
@@ -177,9 +176,7 @@ spec:
     requests.cpu: '4'
 ```
 
-### Labels & Selectors
-
-#### [Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
+### [Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/)
 
 - Labels are `key-value` pairs attached to Kubernetes objects like Pods, Services, etc.
 - Labels enable users to map their own organizational structures onto system objects in a loosely coupled fashion
@@ -201,13 +198,13 @@ metadata:
 
 - Above example has 3 labels
 
-#### Label Selectors
+### Label Selectors
 
 - Selectors are expressions that match against the labels of resources
 - Think of selectors as search queries that find objects with specific labels.
 - 2 types of Selectors:
 
-##### Equality-Based Selectors
+#### Equality-Based Selectors
 
 - Equality-based selectors allow you to filter resources based on exact key-value matches.
 
@@ -220,7 +217,7 @@ selector:
 
 - The above example will match resources that have `both` the `env: prod` and `app: web` labels.
 
-##### Set-Based Selectors
+#### Set-Based Selectors
 
 - Set-based selectors allow for more flexibility, letting you match resources based on conditions like `existence`, `in`, `not in`, etc.
 
