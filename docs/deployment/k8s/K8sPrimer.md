@@ -21,6 +21,7 @@
     - [Label Selectors](#label-selectors)
       - [Equality-Based Selectors](#equality-based-selectors)
       - [Set-Based Selectors](#set-based-selectors)
+    - [Annotations vs Labels](#annotations-vs-labels)
     - [Pods vs ReplicaSets vs Deployments](#pods-vs-replicasets-vs-deployments)
   - [References](#references)
     - [Amazing Blogs](#amazing-blogs)
@@ -236,6 +237,19 @@ In this example:
 - The third expression matches if the `tier` label exists, regardless of its value.
 
 You can `combine` equality-based and set-based selectors as needed to match resources based on complex criteria.
+
+### Annotations vs Labels
+
+| Feature              | Labels                    | Annotations               |
+|----------------------|---------------------------|----------------------------|
+| **Purpose**          | Identify and select objects| Attach non-identifying metadata|
+| **Use Cases**        | Filtering, grouping resources| Additional information, tool metadata|
+| **Searchable**       | Yes                       | No                         |
+| **Syntax**           | Key/Value pairs           | Key/Value pairs            |
+| **Modification**     | Dynamic                   | Dynamic                    |
+| **Visibility**       | Used by Kubernetes system | Primarily for end-users/tools|
+| **Character Limit**  | 63 chars for key and value| No specific limit           |
+| **Validation**       | Specific constraints      | No specific constraints     |
 
 ### Pods vs ReplicaSets vs Deployments
 
