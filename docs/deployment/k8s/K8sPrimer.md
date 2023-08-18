@@ -11,6 +11,12 @@
     - [6. ConfigMap \& Secret](#6-configmap--secret)
     - [7. Volume](#7-volume)
     - [8. Namespace](#8-namespace)
+      - [Why Use Namespaces?](#why-use-namespaces)
+      - [Creating a Namespace](#creating-a-namespace)
+      - [Adding a Namespace](#adding-a-namespace)
+      - [Filtering by Namespace](#filtering-by-namespace)
+      - [Default Namespaces](#default-namespaces)
+      - [Resource Quotas and Limits](#resource-quotas-and-limits)
     - [9. ReplicaSet](#9-replicaset)
     - [10. StatefulSet](#10-statefulset)
     - [11. DaemonSet](#11-daemonset)
@@ -80,10 +86,78 @@
 - Provides storage to containers within a pod.
 - Can be persistent across pod restarts.
 
-### 8. Namespace
+### 8. [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
 
-- Logical separation within a cluster.
-- Allows for organization and isolation of resources.
+- It provides a mechanism for isolating groups of resources within a single cluster.
+- Names of resources need to be unique within a namespace, but not across namespaces.
+- `Namespace-based scoping` is applicable only for `namespaced objects` (e.g. *Deployments*, *Services*, etc) and not for `cluster-wide objects` (e.g. *StorageClass*, *Nodes*, *PersistentVolumes*, etc).
+- Think of them as virtual walls within a Kubernetes cluster that separate different environments, such as development, staging, and production or apps and databases.
+
+#### Why Use Namespaces?
+
+1. `Isolation`: Namespaces provide a scope for names, ensuring that resources are isolated from each other.
+2. `Organization`: By grouping related resources together, namespaces simplify management and access control.
+3. `Resource Allocation`: You can set resource limits on a per-namespace basis, ensuring fair usage across different teams or applications.
+4. `Access Control`: You can set different permissions for different namespaces, allowing precise control over who can do what within each environment.
+
+#### Creating a Namespace
+
+- A namespace can be created using a YAML file like the following:
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-namespace
+```
+
+- A simple command-line instruction:
+
+```bash
+kubectl create namespace my-namespace
+```
+
+#### Adding a Namespace
+
+Once a namespace is created, you can create, view, and manage resources within that namespace. When creating a resource, you can specify the namespace in the YAML file:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  namespace: my-namespace
+```
+
+#### Filtering by Namespace
+
+```bash
+kubectl get pods --namespace=my-namespace
+```
+
+#### Default Namespaces
+
+Kubernetes comes with a few default namespaces:
+
+- `default`: Where resources are placed if no namespace is specified.
+- `kube-system`: Used by resources that are part of Kubernetes itself.
+- `kube-public`: Typically used for resources that need to be accessible across the entire cluster.
+
+#### Resource Quotas and Limits
+
+You can set quotas and limits on resources within a namespace to control CPU, memory, and other resource utilization. Here's an example:
+
+```yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: my-quota
+  namespace: my-namespace
+spec:
+  hard:
+    pods: '10'
+    requests.cpu: '4'
+```
 
 ### 9. ReplicaSet
 
