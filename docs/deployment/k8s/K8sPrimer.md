@@ -18,6 +18,7 @@
       - [Default Namespaces](#default-namespaces)
       - [Resource Quotas and Limits](#resource-quotas-and-limits)
     - [Labels](#labels)
+      - [Recommended Labels](#recommended-labels)
     - [Label Selectors](#label-selectors)
       - [Equality-Based Selectors](#equality-based-selectors)
       - [Set-Based Selectors](#set-based-selectors)
@@ -198,6 +199,45 @@ metadata:
 ```
 
 - Above example has 3 labels
+
+#### [Recommended Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/)
+
+- Recommended labels in Kubernetes are standardized metadata that allow you to identify, manage, and query resources.
+- By adopting a common set of labels across resources, it promotes consistent handling and provides a shared standard across different projects and tools.
+
+- Here's a list of recommended labels along with their descriptions:
+
+| Label                      | Description                                                                                     |
+|----------------------------|-------------------------------------------------------------------------------------------------|
+| `app.kubernetes.io/name`   | The name of the application (e.g., "mysql").                                                    |
+| `app.kubernetes.io/instance` | A unique instance name of the application (e.g., "wordpress-abcxzy").                           |
+| `app.kubernetes.io/version`  | The version of the application (e.g., "v1.0.0").                                                |
+| `app.kubernetes.io/component` | The component within the architecture (e.g., "database", "webserver").                          |
+| `app.kubernetes.io/part-of`  | The name of a higher-level application that this is a part of (e.g., "wordpress").               |
+| `app.kubernetes.io/managed-by` | The tool being used to manage the operation of an application (e.g., "helm").                     |
+
+- **Example Usage**
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  labels:
+    app.kubernetes.io/name: my-app
+    app.kubernetes.io/instance: my-app-12345
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: bigger-app
+    app.kubernetes.io/managed-by: helm
+```
+
+- **Benefits**
+
+- **Consistency:** Using the same labels across different parts of an application helps in managing and querying resources.
+- **Integration:** Many tools recognize and leverage these labels, allowing for smoother integration and understanding between different parts of the Kubernetes ecosystem.
+
+Adhering to the set of recommended labels makes it easier to manage applications, enhances interoperability, and promotes best practices within the Kubernetes community.
 
 ### Label Selectors
 
