@@ -63,15 +63,15 @@
 
 | Concept                     | Description                                                                                                         |
 |-----------------------------|---------------------------------------------------------------------------------------------------------------------|
-| **Pod**                     | The smallest deployable unit, encapsulating one or more containers.                                                  |
+| [**Pod**](https://kubernetes.io/docs/concepts/workloads/pods/)                     | The smallest deployable unit, encapsulating one or more containers.                                                  |
 | **Service**                 | A set of Pods working together, exposed as a network service.                                                        |
-| **Deployment**              | Manages the desired state for Pods and ReplicaSets. Supports updates, rollbacks, and scaling.                        |
+| [**Deployment**](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)              | Manages the desired state for Pods and ReplicaSets. Supports updates, rollbacks, and scaling.                        |
 | **ReplicaSet**              | Ensures that a specified number of replicas of a Pod are running at all times.                                       |
 | **Namespace**               | Logical partitioning of a Kubernetes cluster, used to isolate resources.                                             |
 | **ConfigMap**               | Allows you to decouple environment-specific configuration from your container images.                                 |
 | **Secret**                  | Used to store sensitive information, such as passwords or API keys in `base64` format                                                  |
 | **Volume**                  | Represents a storage location, either on the host or a remote storage solution.                                       |
-| **Ingress**                 | Manages external access to services within a cluster, typically HTTP.                                                |
+| [**Ingress**](https://kubernetes.io/docs/concepts/services-networking/ingress/)                 | Manages external access to services within a cluster, typically HTTP.                                                |
 | **StatefulSet**             | Manages the deployment and scaling of a set of Pods, with persistent storage and unique network identifiers.          |
 | **DaemonSet**               | Ensures all or some Nodes run a copy of a Pod, typically used for node-level system services.                        |
 | **Horizontal Pod Autoscaler** | Automatically scales the number of Pods in a deployment, replica set, or replication controller based on observed CPU or memory utilization. |
