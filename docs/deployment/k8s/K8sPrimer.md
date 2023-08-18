@@ -3,6 +3,7 @@
 - [Kubernetes Primer](#kubernetes-primer)
   - [What is Kubernetes?](#what-is-kubernetes)
   - [Local Deployment](#local-deployment)
+  - [Cheat Sheet](#cheat-sheet)
   - [Key Concepts](#key-concepts)
     - [Hardware Concepts](#hardware-concepts)
     - [Software Concepts](#software-concepts)
@@ -27,8 +28,7 @@
     - [Pods vs ReplicaSets vs Deployments](#pods-vs-replicasets-vs-deployments)
   - [References](#references)
     - [Amazing Blogs](#amazing-blogs)
-    - [Offical Documentation](#offical-documentation)
-    - [Stephen Grider Tutorial](#stephen-grider-tutorial)
+    - [Udemy Videos](#udemy-videos)
 
 ## What is Kubernetes?
 
@@ -40,6 +40,10 @@
 - Multiple known alternatives
 - `Docker Desktop` is most popular
 - [Refer this doc for details](./K8sWithDockerDesktop.md)
+
+## Cheat Sheet
+
+- [K8s Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 ## [Key Concepts](https://kubernetes.io/docs/concepts/overview/)
 
@@ -372,13 +376,7 @@ spec:
 - [Config Maps & Secrets](https://medium.com/google-cloud/kubernetes-configmaps-and-secrets-68d061f7ab5b)
 - [K8s CLI Tools](https://medium.com/free-code-camp/how-to-set-up-a-serious-kubernetes-terminal-dd07cab51cd4)
 
-### Offical Documentation
-
-- [K8s Concepts](https://kubernetes.io/docs/concepts/overview/)
-- [K8s Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-- [Helm - K8s Package Manager](https://helm.sh/docs/)
-
-### Stephen Grider Tutorial
+### Udemy Videos
 
 - [Services in K8s](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11482938#overview)
 - [Why use Services](https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11482970#overview)
