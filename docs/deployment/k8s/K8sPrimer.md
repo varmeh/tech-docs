@@ -24,7 +24,6 @@
       - [Set-Based Selectors](#set-based-selectors)
     - [Annotations vs Labels](#annotations-vs-labels)
     - [Controllers](#controllers)
-      - [Example: ReplicaSet Controller](#example-replicaset-controller)
     - [Pods vs ReplicaSets vs Deployments](#pods-vs-replicasets-vs-deployments)
   - [References](#references)
     - [Amazing Blogs](#amazing-blogs)
@@ -317,9 +316,7 @@ You can `combine` equality-based and set-based selectors as needed to match reso
 | Job Controller        | Manages one-off tasks that need to run to completion.                        |
 | CronJob Controller    | Schedules Jobs to run at specified times or intervals.                       |
 
-#### Example: ReplicaSet Controller
-
-Here's a simplified example of a ReplicaSet YAML definition:
+- `Example`: ReplicaSet Controller
 
 ```yaml
 apiVersion: apps/v1
