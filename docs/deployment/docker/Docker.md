@@ -1,4 +1,9 @@
-# Docker: An Introduction
+# [Docker: An Introduction](https://www.youtube.com/watch?v=pg19Z8LL06w&ab_channel=TechWorldwithNana)
+
+- [Docker: An Introduction](#docker-an-introduction)
+  - [Key Linux Technologies Powering Docker](#key-linux-technologies-powering-docker)
+  - [Comparison between VMs and Docker Containers](#comparison-between-vms-and-docker-containers)
+    - [References](#references)
 
 Docker is an open-source platform that automates the deployment, scaling, and management of applications using containerization.
 
@@ -24,9 +29,7 @@ Docker leverages several key Linux technologies to provide its powerful, flexibl
 
 In conclusion, Docker has leveraged a variety of existing Linux technologies to revolutionize how we develop, deploy, and scale applications. These technologies have come together to enable Docker's lightweight, isolated containers that can be consistently run on any system with Docker support.
 
-## Comparison
-
-### Detailed Comparison
+## Comparison between VMs and Docker Containers
 
 | Attribute  | Virtual Machines (VMs) | Docker Containers |
 |---|---|---|
@@ -39,15 +42,7 @@ In conclusion, Docker has leveraged a variety of existing Linux technologies to 
 | **Disk Space**  | VMs require more disk space, as they need to store the entire operating system along with the application. | Containers require less disk space, as they only store the application and its dependencies. |
 | **Use Case**  | VMs are good for running applications that require all of the operating system's resources and functionality. | Containers are great for deploying microservices, as you can easily scale up or down the individual components of an application. |
 
-### Concise Comparison
+### References
 
-| Attribute  | VMs | Docker Containers |
-| ---------- | --- | ----------------- |
-| **Overhead**  | High (full OS) | Low (just app and dependencies)  |
-| **Boot-Up Time**  | Slow (full OS boot) | Fast (app process boot)  |
-| **Performance**  | Good, but less efficient | Excellent (less overhead) |
-| **Isolation**  | Strong (separate OS) | Good (shared kernel) |
-| **Portability**  | Less (OS dependent) | High (run anywhere with Docker) |
-| **Security**  | Strong (isolated resources) | Good, but susceptible to kernel exploits |
-| **Disk Space**  | High (OS + app) | Low (app + dependencies) |
-| **Use Case**  | Resource-intensive apps | Microservices and scalable apps |
+- [Docker Explained](https://www.youtube.com/watch?v=pg19Z8LL06w&ab_channel=TechWorldwithNana)
+- [Docker in 100s](https://www.youtube.com/watch?v=Gjnup-PuquQ&ab_channel=Fireship)

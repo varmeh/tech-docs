@@ -2,7 +2,7 @@
 
 - [Docker System Pruning and Cleaning Commands](#docker-system-pruning-and-cleaning-commands)
   - [docker prune](#docker-prune)
-    - [docker rm vs prune](#docker-rm-vs-prune)
+  - [docker rm vs prune](#docker-rm-vs-prune)
 
 ## docker prune
 
@@ -18,7 +18,7 @@ A few things to remember when using `docker system prune`:
 - "Dangling images" are untagged images, that are the leaves of the images tree (not intermediary layers).
 - It won't remove volumes created by a `docker-compose.yml` file by default.
 
-### docker rm vs prune
+## docker rm vs prune
 
 |     | `docker rm` | `docker system prune` |
 | --- | ----------- | --------------------- |
