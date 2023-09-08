@@ -25,7 +25,7 @@ Reference Tech Docs
 
 | Topic | Description |
 | ----- | ----------- |
-| [Docker Basics](./docs/deployment/docker/Docker.md) | This document explains what is Docker & what technologies power it  |
+| [Docker](./docs/deployment/docker/Docker.md) | What is Docker  |
 | [Docker Commands](./docs/deployment/docker/DockerCommandsCategorization.md) | This document list & categorizes most docker commands  |
 | [Docker Files](./docs/deployment/docker/FilesInDocker.md) | Dockerfile & .dockerignore explained  |
 | [Docker Compose Primer](./docs/deployment/docker/DockerCompose.md) | Docker Compose Primer  |
