@@ -37,3 +37,4 @@ Reference Tech Docs
 | [Kubernetes Concepts](./docs/deployment/k8s/K8sPrimer.md) | A Comprehensive document on Kubernetes Concepts with References  |
 | [Kubernetes Commands](./docs/deployment/k8s/K8sCommands.md) | Kubernetes Commands  |
 | [Kubernetes Local Deployment](./docs/deployment/k8s/K8sWithDockerDesktop.md) | Kubernetes with Docker Desktop  |
+| [Helm](./docs/deployment/k8s/helm.md) | Helm - A K8s Package Manager  |
