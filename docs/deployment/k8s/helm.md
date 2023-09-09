@@ -235,3 +235,4 @@ helm package my-app
 - [Helm Concepts Explained](https://www.youtube.com/watch?v=kJscDZfHXrQ&ab_channel=KodeKloud)
 - [Advantages of Helm](https://www.udemy.com/course/helm-kubernetes-packaging-manager-for-developers-and-devops/learn/lecture/28719560#overview)
 - [Helm Charts](https://www.udemy.com/course/helm-kubernetes-packaging-manager-for-developers-and-devops/learn/lecture/28687720#overview)
+- [Helm Revision History using K8s Secrets](https://www.udemy.com/course/helm-kubernetes-packaging-manager-for-developers-and-devops/learn/lecture/28368340#overview)
