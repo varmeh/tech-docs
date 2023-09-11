@@ -20,6 +20,8 @@
     - [Uninstalling a Release](#uninstalling-a-release)
     - [Creating Your Own Chart](#creating-your-own-chart)
     - [Packaging and Sharing Your Chart](#packaging-and-sharing-your-chart)
+    - [Helm Get Chart Manifests](#helm-get-chart-manifests)
+    - [Decode Helm Revision Information Stored in secrets](#decode-helm-revision-information-stored-in-secrets)
   - [References](#references)
 
 ## Why do we need Helm?
@@ -228,6 +230,46 @@ Once your application is defined within a chart, you can package it into a `.tgz
 
 ```bash
 helm package my-app
+```
+
+### [Helm Get Chart Manifests](https://www.udemy.com/course/helm-kubernetes-packaging-manager-for-developers-and-devops/learn/lecture/28400456#overview)
+
+- To get the manifest files of a chart.
+- A manifest is a YAML-encoded representation of the Kubernetes resources that were generated from this release's chart(s).
+- If a chart is dependent on other charts, those resources will also be included in the manifest.
+
+```bash
+helm get manifest my-nginx
+```
+
+### [Decode Helm Revision Information Stored in secrets](https://gist.github.com/DzeryCZ/c4adf39d4a1a99ae6e594a183628eaee)
+
+- Helm saves in revision information in the form of secrets.
+- To get revision information, use command:
+
+```bash
+kubectl get secrets
+```
+
+- It would show a list of secrets. Helm Secrets would have name like `sh.helm.release.v1.<release-name>.v<revision-number>`.
+- You could check internals using command:
+
+```bash
+kubectl get secret sh.helm.release.v1.my-nginx.v1 -o json
+```
+
+- In the output, you would see a key `data.release` with base64 encoded value which holds the revision information.
+
+- This information is tripple encoded
+  - base64 decode - `Kubernetes secrets encoding`
+  - base64 decode (again) - `Helm encoding`
+  - gzip decompress - `Helm zipping`
+
+- To decode this information, use command:
+
+```bash
+kubectl get secrets sh.helm.release.v1.my-nginx.v1 -o jsonpath='{.data.release}' | base64 -D | base64 -D | gzip -d > dump.json
+code dump.json
 ```
 
 ## References
