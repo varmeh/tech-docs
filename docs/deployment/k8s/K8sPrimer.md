@@ -31,6 +31,7 @@
     - [Annotations vs Labels](#annotations-vs-labels)
     - [Controllers](#controllers)
     - [Pods vs ReplicaSets vs Deployments](#pods-vs-replicasets-vs-deployments)
+    - [Health Probes](#health-probes)
   - [References](#references)
     - [Amazing Blogs](#amazing-blogs)
     - [Udemy Videos](#udemy-videos)
@@ -385,6 +386,7 @@ You can `combine` equality-based and set-based selectors as needed to match reso
 
 ### Controllers
 
+- Controllers are control loops that watch the state of your system, then make or request changes where necessary.
 - Controllers automate the management of different aspects of the cluster.
 - They handle aspects such as replication, deployment, scheduling, and more.
 - They continuously watch the current state of the cluster, compare it to the desired state defined in the configuration, and take actions to align the two states.
@@ -452,6 +454,19 @@ spec:
 
 ![pods vs deployments](../../../assets/podsVsDeployments.png)
 
+---
+
+### [Health Probes](https://medium.com/dev-genius/understanding-kubernetes-probes-5daaff67599a)
+
+- One of the challenges with distributed systems and microservices architecture is automatically detecting unhealthy applications, rerouting requests to other available systems, and restoring the broken components.
+- Health checks are one way to address this challenge and ensure reliability.
+
+| Probe Type    | Description                                                                                                   | When Used                                                   | Configuration Parameters                         |
+|---------------|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------|---------------------------------------------------|
+| **Liveness**  | Determines if the pod is running. If the check fails, the container is killed and subjected to its restart policy. | Ensure the container is healthy and responsive.            | `initialDelaySeconds`, `timeoutSeconds`, `periodSeconds`, `successThreshold`, `failureThreshold` |
+| **Readiness** | Determines if the pod should receive traffic. If the check fails, the pod is removed from service load balancers. | Ensure the app inside the container is fully initialized and ready to accept traffic. | `initialDelaySeconds`, `timeoutSeconds`, `periodSeconds`, `successThreshold`, `failureThreshold` |
+| **Startup**   | Determines if the application within the pod has started. If the check fails, the container is killed and restarted. | Ensure the app inside the container has started up correctly. | `failureThreshold`, `periodSeconds` |
+
 ## References
 
 ### Amazing Blogs
@@ -464,6 +479,7 @@ spec:
 - [Nodeport vs LoadBalancer vs Ingress](https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0)
 - [Config Maps & Secrets](https://medium.com/google-cloud/kubernetes-configmaps-and-secrets-68d061f7ab5b)
 - [K8s CLI Tools](https://medium.com/free-code-camp/how-to-set-up-a-serious-kubernetes-terminal-dd07cab51cd4)
+- [RBAC Introduction](https://medium.com/devops-mojo/kubernetes-role-based-access-control-rbac-overview-introduction-rbac-with-kubernetes-what-is-2004d13195df)
 
 ---
 
