@@ -328,9 +328,9 @@ code dump.json
   
 - `Overrideing debug.enabled`: to check the values during debug, override the `debug.enabled` value to `true`:
 
-```bash
-helm template [RELEASE_NAME] [CHART] --set debug.enabled=true > output.yaml
-```
+  ```bash
+  helm template [RELEASE_NAME] [CHART] --set debug.enabled=true > output.yaml
+  ```
 
 ## References
 
