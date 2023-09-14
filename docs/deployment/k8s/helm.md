@@ -308,13 +308,13 @@ code dump.json
   - Create the a file called `debug.yaml` in the `templates/` directory of your chart
   - Add the following to your `debug.yaml`:
 
-  ```yaml
+  ```helm
   {{- if .Values.debug.enabled -}}
   {{- . | toYaml -}}
   {{- end -}}
   ```
 
-- `debug.enabled Variable to values.yaml`:
+- `Add debug.enabled Variable` to values.yaml:
   - By `default`, this will ensure the `debug.yaml` content is not rendered
 
   ```yaml
