@@ -309,9 +309,13 @@ code dump.json
   - Add the following to your `debug.yaml`:
 
   {% raw %}
+
+  ```yaml
     {{- if .Values.debug.enabled -}}
     {{- . | toYaml -}}
     {{- end -}}
+  ```
+
   {% endraw %}
 
 - `Add debug.enabled Variable` to values.yaml:
