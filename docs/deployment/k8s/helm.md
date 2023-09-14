@@ -328,11 +328,6 @@ debug:
 helm template [RELEASE_NAME] [CHART] --set debug.enabled=true > output.yaml
 ```
 
-- `.helmignore`:
-  - You can also add `debug.yaml` to a `.helmignore` file at the root of your chart directory.
-  - The `.helmignore` file format and behavior are similar to `.gitignore` in git.
-  - Anything listed in `.helmignore` will be ignored during the Helm packaging process.
-
 ## References
 
 - [Helm Concepts Explained](https://www.youtube.com/watch?v=kJscDZfHXrQ&ab_channel=KodeKloud)
