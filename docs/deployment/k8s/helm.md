@@ -22,6 +22,9 @@
     - [Packaging and Sharing Your Chart](#packaging-and-sharing-your-chart)
     - [Helm Get Chart Manifests](#helm-get-chart-manifests)
     - [Decode Helm Revision Information Stored in secrets](#decode-helm-revision-information-stored-in-secrets)
+    - [Helm Context](#helm-context)
+      - [What is Helm Context?](#what-is-helm-context)
+      - [How to Access Context Data?](#how-to-access-context-data)
   - [References](#references)
 
 ## Why do we need Helm?
@@ -276,6 +279,59 @@ kubectl get secret sh.helm.release.v1.my-nginx.v1 -o json
 kubectl get secrets sh.helm.release.v1.my-nginx.v1 -o jsonpath='{.data.release}' | base64 -D | base64 -D | gzip -d > dump.json
 code dump.json
 ```
+
+---
+
+### Helm Context
+
+#### What is Helm Context?
+
+- In Helm, the term `context` often refers to the set of data available to templates as they're being evaluated.
+- The context provides a structured way to access data that the template might need.
+
+| Context Component | Description                                                   | Example Keys/Values                               |
+|--------------------|---------------------------------------------------------------|---------------------------------------------------|
+| **Values**         | User-supplied configuration for the chart.                    | Any value specified in `values.yaml` or via CLI.  |
+| **Release**        | Information about the release itself.                        | `Release.Name`, `Release.Namespace`, `Release.IsUpgrade`, `Release.Revision`, `Release.Service` |
+| **Chart**          | Information about the chart being deployed.                  | `Chart.Name`, `Chart.Version`, `Chart.AppVersion` |
+| **Files**          | Access to files packaged into the chart.                     | `Files.Get`, `Files.GetBytes`                    |
+| **Capabilities**   | Info about the capabilities of the Kubernetes cluster.       | Provides capabilities like `.Capabilities.APIVersions.Has` to check for available APIs. |
+| **Template**       | Information about the current template being executed.       | `Template.Name`, `Template.BasePath`              |
+
+#### How to Access Context Data?
+
+- The context data is accessed using the `.` operator.
+- For instance, to access the `Release.Name` value, you can use `.Release.Name`.
+- To check all the values available in the context, follow the steps below:
+
+- `debug.yaml file`:
+  - Create the a file called `debug.yaml` in the `templates/` directory of your chart
+  - Add the following to your `debug.yaml`:
+
+```yaml
+{{- if .Values.debug.enabled -}}
+{{- . | toYaml -}}
+{{- end -}}
+```
+
+- `debug.enabled Variable to values.yaml`:
+  - By `default`, this will ensure the `debug.yaml` content is not rendered
+
+```yaml
+debug:
+  enabled: false
+```
+  
+- `Overrideing debug.enabled`: to check the values during debug, override the `debug.enabled` value to `true`:
+
+```bash
+helm template [RELEASE_NAME] [CHART] --set debug.enabled=true > output.yaml
+```
+
+- `.helmignore`:
+  - You can also add `debug.yaml` to a `.helmignore` file at the root of your chart directory.
+  - The `.helmignore` file format and behavior are similar to `.gitignore` in git.
+  - Anything listed in `.helmignore` will be ignored during the Helm packaging process.
 
 ## References
 
