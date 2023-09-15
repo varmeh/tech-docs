@@ -310,27 +310,27 @@ code dump.json
 
   {% raw %}
 
-  ```yaml
-    {{- if .Values.debug.enabled -}}
-    {{- . | toYaml -}}
-    {{- end -}}
-  ```
+```yaml
+  {{- if .Values.debug.enabled -}}
+  {{- . | toYaml -}}
+  {{- end -}}
+```
 
   {% endraw %}
 
 - `Add debug.enabled Variable` to values.yaml:
   - By `default`, this will ensure the `debug.yaml` content is not rendered
 
-  ```yaml
-  debug:
-    enabled: false
-  ```
+```yaml
+debug:
+  enabled: false
+```
   
 - `Overrideing debug.enabled`: to check the values during debug, override the `debug.enabled` value to `true`:
 
-  ```bash
-  helm template [RELEASE_NAME] [CHART] --set debug.enabled=true > output.yaml
-  ```
+```bash
+helm template [RELEASE_NAME] [CHART] --set debug.enabled=true > output.yaml
+```
 
 ## References
 
