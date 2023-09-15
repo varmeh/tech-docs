@@ -308,7 +308,7 @@ code dump.json
   - Create the a file called `debug.yaml` in the `templates/` directory of your chart
   - Add the following to your `debug.yaml`:
 
-  {% raw %}
+{% raw %}
 
 ```yaml
   {{- if .Values.debug.enabled -}}
@@ -316,7 +316,7 @@ code dump.json
   {{- end -}}
 ```
 
-  {% endraw %}
+{% endraw %}
 
 - `Add debug.enabled Variable` to values.yaml:
   - By `default`, this will ensure the `debug.yaml` content is not rendered
