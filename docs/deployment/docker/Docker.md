@@ -6,7 +6,7 @@
     - [Before Linux Containers](#before-linux-containers)
     - [With Linux Containers](#with-linux-containers)
   - [How Does Docker Operate?](#how-does-docker-operate)
-  - [VMs vs. Docker Containers: A Comparative Look](#vms-vs-docker-containers-a-comparative-look)
+  - [VMs vs Containers](#vms-vs-containers)
   - [Docker Installation](#docker-installation)
     - [Docker Desktop](#docker-desktop)
       - [Key Features](#key-features)
@@ -15,7 +15,9 @@
       - [Key Features](#key-features-1)
       - [Advantages](#advantages-1)
   - [Docker Desktop vs. Minikube: The Showdown](#docker-desktop-vs-minikube-the-showdown)
-  - [Further Reading](#further-reading)
+  - [References](#references)
+    - [Further Reading](#further-reading)
+    - [Videos](#videos)
 
 ## What is Docker?
 
@@ -69,9 +71,18 @@ At the heart of Docker’s prowess lie several Linux features that enable its un
 4. `Union File Systems (UnionFS)`: Allows Docker to create layers, making image creation and container spin-up efficient.
 5. `Security Modules (e.g., SELinux, AppArmor)`: They ensure containers cannot negatively impact the host system.
 
-## VMs vs. Docker Containers: A Comparative Look
+## VMs vs Containers
 
-| **Attributes**            | **Virtual Machines (VMs)**                                               | **Docker Containers**                                                          |
+- Containers and virtual machines are very similar resource `virtualization technologies`
+- Virtualization is the process in which a system singular resource like `RAM`, `CPU`, `Disk`, or `Networking` can be ‘virtualized’ and represented as `multiple resources`.
+- The key differentiator between containers and virtual machines:
+  - Virtual machines virtualize an entire machine down to the `hardware layers`
+  - Containers only `virtualize software layers above the operating system level`
+
+![VM vs Dockers](../../../assets/vmVsDockers.jpg)
+![Kernel is the Difference](../../../assets/vmVsDockersKernel.png)
+
+| **Attributes**            | **Virtual Machines (VMs)**                                               | **Containers**                                                          |
 |-------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | System Overhead          | VMs have a full OS copy, creating higher overhead.                         | With shared host kernel, containers have lesser overhead.                      |
 | Boot-Up Time             | VMs boot slower due to a complete OS initialization.                       | Containers boast near-instantaneous boot times.                               |
@@ -133,9 +144,15 @@ Minikube is an open-source tool specifically designed to run a local Kubernetes 
 | **Ease of Use**           | GUI and CLI options. Streamlined setup.                   | More configuration might be required. Pure CLI tool.   |
 | **Customizability**       | Limited compared to Minikube.                             | High degree of customization using `minikube` commands.|
 
-## Further Reading
+## References
+
+### Further Reading
 
 - [Docker Explained: A Beginner’s Guide](https://www.youtube.com/watch?v=pg19Z8LL06w&ab_channel=TechWorldwithNana)
 - [Quick Dive into Docker](https://www.youtube.com/watch?v=Gjnup-PuquQ&ab_channel=Fireship)
+- [VM vs Containers](https://www.atlassian.com/microservices/cloud-computing/containers-vs-vms)
 
-Do check out these videos to gain a more visual understanding of Docker and its capabilities. Happy containerizing!!
+### Videos
+
+- [Physical Containers vs Virtual Machines vs Containers](https://www.youtube.com/watch?v=dq3SpOGDk60&ab_channel=SrinathChalla)
+- [Docker 101](https://www.youtube.com/watch?v=kwsJIH5TGIg)
