@@ -25,6 +25,7 @@
     - [Helm Context](#helm-context)
       - [What is Helm Context?](#what-is-helm-context)
       - [How to Access Context Data?](#how-to-access-context-data)
+    - [Helm Hooks](#helm-hooks)
   - [References](#references)
 
 ## Why do we need Helm?
@@ -331,6 +332,21 @@ debug:
 ```bash
 helm template [RELEASE_NAME] [CHART] --set debug.enabled=true > output.yaml
 ```
+
+### Helm Hooks
+
+| Hook Phase       | Purpose & Use Cases | Examples  |
+|------------------|---------------------|-----------|
+| Pre-installation | Run before any release resources are installed.            | Initializing a database, setting up infrastructure.  |
+| Post-installation| Execute once all resources in the release are installed.   | Notify an external system about a new release.   |
+| Pre-upgrade      | Handle tasks before the actual upgrade starts.            | Running data migration scripts, backup operations before an upgrade.                       |
+| Post-upgrade     | Manage operations after the upgrade process is done.      | Reinitializing state, clearing caches, notifying monitoring tools about the upgrade.       |
+| Pre-rollback     | Conduct tasks before a release is rolled back to its previous version.  | Taking snapshots, storing logs before rollback. |
+| Post-rollback    | Handle operations after a release is successfully rolled back. | Restoring from pre-rollback snapshots.           |
+| Pre-delete       | Handle cleanup or other tasks before release resources are deleted.   | Removing dynamic resources created by the release, notifying other services about deletion.|
+| Post-delete      | Run tasks after the release's resources are deleted.      | Verifying resource deletion, freeing up external resources.                                |
+| CRD Hooks        | Handle Custom Resource Definitions (CRDs) and ensure they're set up before other parts of the chart. | Ensuring CRDs are installed or upgraded before other charts. |
+| Test Hooks       | Validate if a release or upgrade is successful.            | Running tests associated with a release. If tests fail, the release is marked as failed.   |
 
 ## References
 

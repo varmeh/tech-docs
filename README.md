@@ -27,7 +27,7 @@ Reference Tech Docs
 | ----- | ----------- |
 | [Docker](./docs/deployment/docker/Docker.md) | What is Docker  |
 | [Docker Commands](./docs/deployment/docker/DockerCommandsCategorization.md) | This document list & categorizes most docker commands  |
-| [Docker Files](./docs/deployment/docker/FilesInDocker.md) | Dockerfile & .dockerignore explained  |
+| [Docker Files](./docs/deployment/docker/DockerFiles.md) | Dockerfile & .dockerignore explained  |
 | [Docker Compose Primer](./docs/deployment/docker/DockerCompose.md) | Docker Compose Primer  |
 
 #### Kubernetes
