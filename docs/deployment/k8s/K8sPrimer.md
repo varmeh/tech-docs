@@ -23,6 +23,12 @@
       - [Filtering by Namespace](#filtering-by-namespace)
       - [Default Namespaces](#default-namespaces)
       - [Resource Quotas and Limits](#resource-quotas-and-limits)
+    - [Services](#services)
+      - [ClusterIP](#clusterip)
+      - [NodePort](#nodeport)
+      - [LoadBalancer](#loadbalancer)
+    - [Ingress](#ingress)
+      - [Ingress Controller](#ingress-controller)
     - [Labels](#labels)
       - [Recommended Labels](#recommended-labels)
     - [Label Selectors](#label-selectors)
@@ -267,6 +273,88 @@ spec:
     pods: '10'
     requests.cpu: '4'
 ```
+
+---
+
+### [Services](https://traefik.io/glossary/kubernetes-ingress-and-ingress-controller-101/)
+
+- 3 Primary Services in K8s:
+  - **ClusterIP**
+  - **NodePort**
+  - **LoadBalancer**
+
+#### ClusterIP
+
+- A ClusterIP Service is exposed on an internal cluster IP and is reachable from `within` the cluster
+- It is the default setting in Kubernetes.
+
+![ClusterIP](../../../assets/clusterip.jpeg)
+
+#### NodePort
+
+- A NodePort Service asks Kubernetes to open a `static port` in every cluster node on a high port between 30,000 and 32,767 (by default).
+- It is exposed on the IP of each node and is automatically routed to a ClusterIP Service that it creates
+
+![NodePort](../../../assets/nodeport.jpeg)
+
+#### LoadBalancer
+
+- A load balancer (LB) exposes the Service externally using `a cloud provider’s load balancer`
+- It builds on top of the NodePort and ClusterIP services and introduces a stable, IP address or DNS name through which external traffic can access an application
+- This option is expensive as it requires each Service to have its own IP address and cloud provider’s load balancer
+
+![Load Balancer](../../../assets/loadbalancer.jpeg)
+
+- When a K8s LoadBalancer Service is created on a Cloud deployment, the `k8s control plane` recognizes it and communicates with the cloud provider's API
+- The cloud provider provisions an `external load balancer` and registers it with the K8s control plane
+- A stable IP address (*or a DNS name*) is assigned to the load balancer.
+- The control plane then configures the load balancer to forward traffic to the Service's `ClusterIP` address
+
+---
+
+### Ingress
+
+- `Ingress` is an API object that manages external access to services within a cluster, typically HTTP.
+- It provides:
+  - `Host and Path-Based Routing`: Direct traffic to specific services based on URL paths or hostnames.
+  - `SSL/TLS Termination`: Secure your services by handling SSL/TLS at the Ingress level.
+  - `Rewrites and Redirects`: Modify the request/response content without changing the application.
+- However, merely defining an Ingress resource isn't enough.
+- It's the job of `Ingress Controller` to read the Ingress's configurations and appropriately route the traffic.
+
+#### Ingress Controller
+
+- It's not a single, standalone resource.
+- It a combination of resources that together facilitate the functionality of handling Ingress requests.
+
+**Components of an Ingress Controller:**
+
+1. `Controller Software`:
+   - This is the actual controller component, which is continuously running and watching for changes to Ingress resources.
+   - When changes are detected, it updates its configuration accordingly.
+   - Popular examples include `ingress-nginx`, `traefik`, and `HAProxy Ingress`.
+
+2. `Pods`:
+   - The controller software typically runs within one or more Pods.
+   - These Pods are responsible for routing the incoming traffic based on `Ingress` rules.
+
+3. `ConfigMap/Secrets`:
+   - Ingress Controllers often use ConfigMaps and Secrets to store configurations and TLS certificates, respectively.
+   - Changes to these resources can lead the controller to reload or update its configuration.
+
+4. `Service`:
+   - To expose the Ingress Controller Pods to external traffic, there's typically a Service of type `LoadBalancer` or `NodePort` associated with it.
+
+5. `RBAC (Roles, RoleBindings, ServiceAccounts)`:
+   - To securely access and watch the Ingress resources and associated configurations, the Ingress Controller often runs with specific ServiceAccount, Role, and RoleBinding settings.
+
+6. `Backend Pods and Services`:
+   - While not part of the Ingress Controller per se, these are essential components in the whole setup.
+   - The Ingress Controller uses the Ingress rules to route traffic to these backend services and eventually to the backend pods.
+
+7. `Ingress Resources`:
+   - Although separate from the Ingress Controller, Ingress resources define the rules for how traffic should be routed.
+   - The Ingress Controller watches and implements these rules.
 
 ---
 
