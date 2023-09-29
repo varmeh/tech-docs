@@ -29,6 +29,7 @@
       - [LoadBalancer](#loadbalancer)
     - [Ingress](#ingress)
       - [Ingress Controller](#ingress-controller)
+      - [Traffic Flow with Ingress Controller](#traffic-flow-with-ingress-controller)
     - [Labels](#labels)
       - [Recommended Labels](#recommended-labels)
     - [Label Selectors](#label-selectors)
@@ -355,6 +356,41 @@ spec:
 7. `Ingress Resources`:
    - Although separate from the Ingress Controller, Ingress resources define the rules for how traffic should be routed.
    - The Ingress Controller watches and implements these rules.
+
+#### Traffic Flow with Ingress Controller
+
+1. `External Traffic`:
+   - External traffic, such as user requests from the internet, first hits the public-facing external load balancer.
+
+2. `External Load Balancer (ELB)`:
+   - Managed by the cloud provider (like AWS ELB, Google Cloud Load Balancer, Azure Load Balancer, DigitalOcean Load Balancer, etc.).
+   - It's designed to distribute incoming traffic across multiple nodes in the Kubernetes cluster.
+   - The ELB is configured to know which node ports to forward traffic to, usually by the LoadBalancer service.
+
+3. `LoadBalancer Service`:
+   - It's a Kubernetes service of type `LoadBalancer`.
+   - Acts as an interface between the external load balancer and the internal ClusterIP services and pods.
+   - Requests the cloud provider to provision an external load balancer (or utilizes an existing one) and automatically configures it to forward traffic to the service's pods, often via NodePorts.
+
+4. `ClusterIP Service`:
+   - Once the traffic reaches the cluster (thanks to the LoadBalancer service), the `ClusterIP` service takes over.
+   - `ClusterIP` is the default type of service in Kubernetes. It exposes the service on an internal IP in the cluster, making the service reachable only from within the cluster.
+   - In the context of `ingress-nginx`, this service forwards the traffic to the `ingress controller pods`.
+
+5. `Ingress-nginx Controller Pods (with NGINX)`:
+   - Inside these pods is where the actual decisions on traffic routing, based on the host, path, or other request parameters, are made.
+   - They continuously watch for changes in Ingress resources across the cluster.
+   - When a request comes in, the embedded NGINX determines the destination using Ingress rules, guiding the traffic to the appropriate service within a specific namespace (`dev`, `prod`, etc.).
+
+6. `Ingress Resources`:
+   - These are defined per application or environment. They dictate how incoming requests should be routed.
+   - For instance, requests with a host header of `dev.botiga.com` might be routed to services in the `dev` namespace, while `prod.botiga.com` would target services in the `prod` namespace.
+
+7. `Destination Services & Pods`:
+   - Based on the decisions made by NGINX in the ingress controller pods, traffic is then forwarded to the target services.
+   - These services, in turn, route the traffic to the respective application pods in their designated namespaces (`dev`, `prod`, etc.).
+
+In this model, the `LoadBalancer` service effectively bridges the gap between the external world and your Kubernetes cluster, ensuring traffic can smoothly flow into your applications. The combination of both LoadBalancer and ClusterIP services with the `ingress-nginx` controller pods allows for efficient, rule-based routing of external traffic deep into the appropriate areas of the cluster.
 
 ---
 
