@@ -359,6 +359,8 @@ spec:
 
 #### Traffic Flow with Ingress Controller
 
+![Ingress](../../../assets/k8s-nginx.png)
+
 1. `External Traffic`:
    - External traffic, such as user requests from the internet, first hits the public-facing external load balancer.
 
