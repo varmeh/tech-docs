@@ -19,6 +19,12 @@ Reference Tech Docs
 | [FastAPI Code Conventions](./docs/fastapi/NamingConventions.md) | Code conventions a Python FastAPI Project |
 | [VSCode Shortcuts](./docs/misc/VSCodeKeyShortcuts.md) | VSCode Keyboard Shortcuts |
 
+### System Design
+
+| Topic | Description |
+| ----- | ----------- |
+| [Storage 101](./docs/system-design/Storage101.md) | Block vs File vs Object Storage  |
+
 ### Deployments
 
 #### Docker
