@@ -24,7 +24,6 @@ Reference Tech Docs
 | Topic | Description |
 | ----- | ----------- |
 | [Storage 101](./docs/system-design/Storage101.md) | Block vs File vs Object Storage  |
-| [Real Time Bidding](./docs/system-design/Rtb.md) | Ad Exchange & RTB Explained |
 
 ### Deployments
 
