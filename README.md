@@ -24,6 +24,7 @@ Reference Tech Docs
 | Topic | Description |
 | ----- | ----------- |
 | [Storage 101](./docs/system-design/Storage101.md) | Block vs File vs Object Storage  |
+| [GeoHashing](./docs/system-design/GeoHashing.md) | GeoHash Explained  |
 
 ### Deployments
 
