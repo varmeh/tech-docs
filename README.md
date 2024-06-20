@@ -25,6 +25,7 @@ Reference Tech Docs
 | ----- | ----------- |
 | [Storage 101](./docs/system-design/Storage101.md) | Block vs File vs Object Storage  |
 | [GeoHashing](./docs/system-design/GeoHashing.md) | GeoHash Explained  |
+| [QuadTree](./docs/system-design/Quadtree.md) | QuadTree usage in Geolocation Services Explained  |
 
 ### Deployments
 
