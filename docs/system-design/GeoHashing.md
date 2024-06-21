@@ -68,7 +68,7 @@ Here is a table showing the precision of geohashes based on their length:
 
 - [Experience effect of precision on geohash](https://www.movable-type.co.uk/scripts/geohash.html)
 
-![alt text](image.png)
+![alt text](../../assets/geohashZoomLevels.png)
 
 ## How is Geohash Calculated?
 
