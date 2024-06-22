@@ -70,6 +70,8 @@ This document provides a comprehensive overview of how Google Maps uses map tile
    - Google uses a network of geographically distributed servers to store tiles
    - CDNs reduce latency and speed up the delivery of tiles to users.
 
+![alt text](../../assets/zoomGeoSizeMapping.png)
+
 ### Rendering on Devices
 
 1. `Pre-fetching`: The app pre-fetches and caches tiles for the surrounding area to ensure a smooth experience when panning the map.
