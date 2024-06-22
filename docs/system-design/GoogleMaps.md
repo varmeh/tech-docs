@@ -4,6 +4,8 @@
   - [Map Tiles](#map-tiles)
     - [What are Map Tiles?](#what-are-map-tiles)
     - [Storage and Hierarchical Structure](#storage-and-hierarchical-structure)
+    - [Area Mapping with Zoom levels](#area-mapping-with-zoom-levels)
+      - [Explanation of the Table](#explanation-of-the-table)
     - [Rendering on Devices](#rendering-on-devices)
     - [Static Image Representation](#static-image-representation)
   - [Routing Tiles](#routing-tiles)
@@ -70,7 +72,34 @@ This document provides a comprehensive overview of how Google Maps uses map tile
    - Google uses a network of geographically distributed servers to store tiles
    - CDNs reduce latency and speed up the delivery of tiles to users.
 
+### Area Mapping with Zoom levels
+
 ![alt text](../../assets/zoomGeoSizeMapping.png)
+
+Here's a detailed table that outlines the relationship between the number of characters in a Geohash, corresponding zoom levels, area coverage, and typical use cases for each level of precision:
+
+| Geohash Length | Approximate Zoom Level | Area Covered        | Typical Use Case                                      |
+|----------------|------------------------|---------------------|-------------------------------------------------------|
+| 1              | 1-2                    | 5,000 km x 5,000 km | Identifying large regions such as continents          |
+| 2              | 3-4                    | 1,250 km x 625 km   | Regional overview, such as a large state in the USA   |
+| 3              | 5-6                    | 156 km x 156 km     | Locating major cities                                 |
+| 4              | 7-8                    | 39 km x 19.5 km     | Identifying areas within a city, like neighborhoods   |
+| 5              | 9-10                   | 4.89 km x 4.89 km   | Detailed city view, identifying parks or large roads  |
+| 6              | 11-12                  | 1.22 km x 0.61 km   | Street-level detail, identifying specific blocks      |
+| 7              | 13-14                  | 153 m x 153 m       | Pinpointing specific buildings or smaller roads       |
+| 8              | 15-16                  | 38 m x 19 m         | Precise addressing, individual addresses or entrances |
+| 9              | 17-18                  | 4.77 m x 4.77 m     | Very precise location, identifying specific objects   |
+| 10             | 19-20                  | 1.19 m x 0.59 m     | Extremely detailed, pinpoint accuracy for devices     |
+
+#### Explanation of the Table
+
+1. `Geohash Length`: Represents the number of characters in the Geohash string. Each character adds more precision.
+
+2. `Approximate Zoom Level`: These zoom levels are approximations for digital mapping systems like Google Maps or OpenStreetMap, where higher zoom levels show more detail. The association between Geohash length and zoom level isn't exact and can vary based on specific implementations and map settings.
+
+3. `Area Covered`: This column provides a rough estimate of the area covered by each Geohash length. The area dimensions decrease as the Geohash gets longer.
+
+4. `Typical Use Case`: Describes common scenarios or applications for each Geohash length.
 
 ### Rendering on Devices
 
