@@ -28,6 +28,7 @@ Reference Tech Docs
 | [QuadTree](./docs/system-design/Quadtree.md) | QuadTree usage in Geolocation Services Explained  |
 | [Google Maps](./docs/system-design/GoogleMaps.md) | Map Tiles & Routing Tiles Explained  |
 | [SQL Deepdive](./docs/system-design/SqlDb.md) | SQL Deepdive |
+| [Simhash](./docs/system-design/Simhash.md) | Deduplication in Web Texts |
 
 ### Deployments
 
