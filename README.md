@@ -30,6 +30,7 @@ Reference Tech Docs
 | [Simhash](./docs/system-design/Simhash.md) | Deduplication in Web Texts |
 | [Storage 101](./docs/system-design/Storage101.md) | Block vs File vs Object Storage  |
 | [SQL Deepdive](./docs/system-design/SqlDb.md) | SQL Deepdive |
+| [Time Uid](./docs/system-design/TimestampUid.md) | Timestamp as Unique Ids |
 
 ### Deployments
 
