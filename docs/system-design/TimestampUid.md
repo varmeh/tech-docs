@@ -20,17 +20,20 @@ Timestamps can effectively serve as unique identifiers, particularly in real-tim
 To determine how many bits are needed for storing millisecond-based timestamps:
 
 - **Milliseconds in a Year** ≈ 31,557,600,000
-- **100 Years**: \( 100 \times 31,557,600,000 = 3,155,760,000,000 \) milliseconds
-- **Bits Required**: \( \log_2(3,155,760,000,000) \approx 42 \) bits
+- **100 Years**: 100 * 31,557,600,000 = 3,155,760,000,000 ms
+- **Bits Required**: log_2(3,155,760,000,000) ~ 42 bits
 
 Thus, a **42-bit integer** can store millisecond-precision timestamps spanning **100 years**.
 
 ## Custom Epoch
 
-If you want to change the epoch from **January 1, 1970** to a new date, say **August 16, 2024**:
+If you use timestamp as such, 100 years would be counted from **January 1, 1970**.
+
+So, it would be ideal to change the epoch to a new date, say **August 16, 2024**:
 
 1. **Calculate the Epoch Offset**:  
    Find the milliseconds between the original epoch and the new one.
+
 2. **Adjust Timestamps**:  
    Subtract this offset from all future timestamps.
 
