@@ -23,6 +23,7 @@ Reference Tech Docs
 
 | Topic | Description |
 | ----- | ----------- |
+| [Database Selection](./docs/system-design/DbComparison.md) | Database Selection based on Read-Write Load |
 | [GeoHashing](./docs/system-design/GeoHashing.md) | GeoHash Explained  |
 | [Google Maps](./docs/system-design/GoogleMaps.md) | Map Tiles & Routing Tiles Explained  |
 | [Optimistic Locks](./docs/system-design/OptimisticLocks.md) | Conflict Resolution in optimistic locks |
