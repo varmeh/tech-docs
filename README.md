@@ -32,6 +32,8 @@ Reference Tech Docs
 | [Storage 101](./docs/system-design/Storage101.md) | Block vs File vs Object Storage  |
 | [SQL Deepdive](./docs/system-design/SqlDb.md) | SQL Deepdive |
 | [Time Uid](./docs/system-design/TimestampUid.md) | Timestamp as Unique Ids |
+| [Merkle Trees](./docs/system-design/MerkleTrees.md) | Merkle Trees for integrity check |
+| [WhatsApp Design](./docs/system-design/WhatsApp.md) | WA System Design |
 
 ### Deployments
 
