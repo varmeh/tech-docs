@@ -1,70 +1,64 @@
 # Understanding LSM Trees, B+ Trees & Hybrid Indexing Models
 
 - [Understanding LSM Trees, B+ Trees \& Hybrid Indexing Models](#understanding-lsm-trees-b-trees--hybrid-indexing-models)
-  - [1. LSM Trees (Log-Structured Merge Trees)](#1-lsm-trees-log-structured-merge-trees)
-    - [How It Works?](#how-it-works)
-    - [Pros \& Cons](#pros--cons)
-    - [Example Databases Using LSM Trees](#example-databases-using-lsm-trees)
-  - [2. B+ Trees (Balanced Tree Indexing)](#2-b-trees-balanced-tree-indexing)
-    - [How It Works?](#how-it-works-1)
-    - [Pros \& Cons](#pros--cons-1)
-    - [Example Databases Using B+ Trees](#example-databases-using-b-trees)
-  - [3. Hybrid Indexing Models (Combining LSM \& B+ Trees)](#3-hybrid-indexing-models-combining-lsm--b-trees)
+  - [1. LSM Trees (Log-Structured Merge Trees) vs. B+ Trees (Balanced Tree Indexing)](#1-lsm-trees-log-structured-merge-trees-vs-b-trees-balanced-tree-indexing)
+    - [B+ Trees-Based Databases (e.g., MySQL/InnoDB, PostgreSQL, TimescaleDB)](#b-trees-based-databases-eg-mysqlinnodb-postgresql-timescaledb)
+    - [LSM Trees-Based Databases (e.g., Cassandra, RocksDB, Apache Druid)](#lsm-trees-based-databases-eg-cassandra-rocksdb-apache-druid)
+  - [2. Hybrid Indexing Models (Combining LSM \& B+ Trees)](#2-hybrid-indexing-models-combining-lsm--b-trees)
     - [A. LSM-B+ Hybrid (MongoDB's WiredTiger, MyRocks)](#a-lsm-b-hybrid-mongodbs-wiredtiger-myrocks)
     - [B. Fractal Trees (TokuDB, Percona FT)](#b-fractal-trees-tokudb-percona-ft)
     - [C. Bw-Trees (Hekaton in SQL Server, FAWN)](#c-bw-trees-hekaton-in-sql-server-fawn)
-  - [4. Which Indexing Model is Best for Mixed Read \& Write Workloads?](#4-which-indexing-model-is-best-for-mixed-read--write-workloads)
-  - [5. Conclusion](#5-conclusion)
+  - [3. Which Indexing Model is Best for Mixed Read \& Write Workloads?](#3-which-indexing-model-is-best-for-mixed-read--write-workloads)
+  - [4. Conclusion](#4-conclusion)
 
-## 1. LSM Trees (Log-Structured Merge Trees)
+## 1. LSM Trees (Log-Structured Merge Trees) vs. B+ Trees (Balanced Tree Indexing)
 
-### How It Works?
+### B+ Trees-Based Databases (e.g., MySQL/InnoDB, PostgreSQL, TimescaleDB)
 
-- **Write Optimization:** Writes are buffered in memory (MemTable) and later flushed to immutable SSTables (Sorted String Tables).
-- **Compaction:** Periodically merges multiple SSTables to reduce query latency.
-- **Read Path:** Queries must merge results from multiple SSTables, which can increase read latency.
+✅ **Efficient Reads for Older Data**
 
-### Pros & Cons
+- B+ Trees keep data **sorted** and maintain **balanced levels** for fast lookups.
+- Since **all index nodes** (except leaves) are stored in memory, traversing to a leaf node is **fast (O(log N))**.
+- Reads are efficient even for **older data** since it’s already in a well-structured, sorted format.
 
-| Advantage | Disadvantage |
-|-----------|-------------|
-| High write throughput (sequential writes) | Read latency increases for older data |
-| Efficient for append-only workloads | Compaction requires CPU and disk I/O |
-| Works well for time-series data | Querying multiple SSTables can slow down complex reads |
+❌ **Low Write Throughput**
 
-### Example Databases Using LSM Trees
+- B+ Trees require **in-place updates** and **node splits** when inserting.
+- This leads to **random I/O**, which is expensive for disk-based storage.
+- As data grows, maintaining balance (split/merge operations) slows down **write performance**.
 
-- **Cassandra** (Optimized for high write throughput, eventual consistency)
-- **RocksDB** (Embedded key-value store, used in MyRocks for MySQL)
-- **Apache Druid** (OLAP system with real-time ingestion and LSM-like storage)
+🔥 **Ideal Use Case:**
 
----
-
-## 2. B+ Trees (Balanced Tree Indexing)
-
-### How It Works?
-
-- **Write Path:** Inserts and updates occur in-place, maintaining a balanced tree structure.
-- **Read Path:** Fast lookups (O(log N)) as data is already sorted and indexed.
-- **Uses disk pages efficiently** with node splits happening as needed.
-
-### Pros & Cons
-
-| Advantage | Disadvantage |
-|-----------|-------------|
-| Efficient range queries | Writes require random I/O (node splits) |
-| Good for transactional workloads (OLTP) | Slower than LSM for insert-heavy workloads |
-| Fast reads for all data, including historical | Index maintenance can become expensive |
-
-### Example Databases Using B+ Trees
-
-- **MySQL (InnoDB)** (Optimized for fast indexed lookups)
-- **PostgreSQL** (Uses B+ Trees for indexing and metadata)
-- **TimescaleDB** (B+ Trees + BRIN for efficient time-series queries)
+- **Transactional Databases** (OLTP) with **frequent reads & updates**.
+- **Efficient range queries** (since data is sorted).
+- **Older data remains equally fast to query**.
 
 ---
 
-## 3. Hybrid Indexing Models (Combining LSM & B+ Trees)
+### LSM Trees-Based Databases (e.g., Cassandra, RocksDB, Apache Druid)
+
+✅ **Optimized for Writes**
+
+- **Log-structured merges (LSM) buffer writes** in **MemTables** (in-memory structures).
+- When MemTables reach a threshold, they are **flushed as immutable SSTables** (Sorted String Tables).
+- This results in **sequential writes**, which are much faster than random I/O.
+
+❌ **Read Latency Increases for Older Data**
+
+- **Recent data** is in the **MemTable (fastest access)**.
+- **Older data** is in **multiple SSTables**, requiring **merge operations** to reconstruct records.
+- As data ages, more **SSTables must be scanned**, leading to **higher read latency**.
+- **Compaction** merges SSTables periodically to improve query efficiency, but at a CPU/storage cost.
+
+🔥 **Ideal Use Case:**
+
+- **Write-heavy workloads** (e.g., logs, analytics, real-time event processing).  
+- **Time-series & append-only data** where updates are rare.  
+- **High ingestion rates** where write performance is crucial.  
+
+---
+
+## 2. Hybrid Indexing Models (Combining LSM & B+ Trees)
 
 ### A. LSM-B+ Hybrid (MongoDB's WiredTiger, MyRocks)
 
@@ -99,7 +93,7 @@
 
 ---
 
-## 4. Which Indexing Model is Best for Mixed Read & Write Workloads?
+## 3. Which Indexing Model is Best for Mixed Read & Write Workloads?
 
 | Indexing Model | Write Performance | Read Performance | Best Used In |
 |---------------|----------------|----------------|-------------|
@@ -111,10 +105,12 @@
 
 ---
 
-## 5. Conclusion
+## 4. Conclusion
 
 - **If you are optimizing for write-heavy workloads:** → Use **LSM Tree-based databases** (Cassandra, Druid, RocksDB).
 - **If you need fast transactional reads & writes:** → Use **Bw-Trees (Hekaton) or Fractal Trees (TokuDB, Percona FT).**
 - **If you need a balance between SQL and high-performance indexing:** → Use **Hybrid models like MongoDB (WiredTiger) or MyRocks.**
 
 ---
+
+This document serves as a long-term reference for database indexing models. 🚀
