@@ -35,6 +35,7 @@ Reference Tech Docs
 | [Time Uid](./docs/system-design/TimestampUid.md) | Timestamp as Unique Ids |
 | [Merkle Trees](./docs/system-design/MerkleTrees.md) | Merkle Trees for integrity check |
 | [WhatsApp Design](./docs/system-design/WhatsApp.md) | WA System Design |
+| [Workflow Orchestration](./docs/system-design/WorkflowOrchestration.md) | Workflow Orchestration with Temporal |
 
 ### Deployments
 
